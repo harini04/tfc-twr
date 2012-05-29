@@ -1,0 +1,136 @@
+/*
+ * TFC_NTSC.c
+ *
+ *  Created on: May 16, 2012
+ *      Author: EHUGHES
+ */
+#include "TFC\TFC.h"
+
+static uint16_t	TmpEvenFieldLines=0;
+static uint16_t	TmpOddFieldLines=0;
+static uint8_t		CurrentField=0;
+
+uint16_t	EvenFieldLines=0;
+uint16_t	OddFieldLines=0;
+
+uint8_t TFC_NTSC_IMAGE[267*(uint16_t)TFC_HORIZONTAL_PIXELS];
+
+uint16_t CurrentLine = 0;
+uint16_t CurrentPixel = 0;
+
+
+uint32_t Irqs;
+
+void TFC_InitNTSC()
+{
+
+	//Enable CLock to Port B so the Timer can get out.
+	SIM_SCGC5 |= SIM_SCGC5_PORTB_MASK;
+		
+	PORTB_PCR10  = PORT_PCR_MUX(1)  | PORT_PCR_IRQC(0x9); //Vertical Sync Digital Interrupts on rising edge 
+	PORTB_PCR9	 = PORT_PCR_MUX(1)  | PORT_PCR_IRQC(0x9);  //Horitzontal Sync Interrupts on Rising Edge
+	PORTB_PCR17  =	PORT_PCR_MUX(1)  | PORT_PCR_IRQC(0xB); 				//Odd Even Interrupts on both edges
+
+	//setup the DMA
+	//Enable Clock to the DMA Mux and the DMA controller
+	SIM_SCGC6 |= SIM_SCGC6_DMAMUX_MASK;
+	SIM_SCGC7 |= SIM_SCGC7_DMA_MASK;
+	
+	//Route ADC- to DMA Channel 0;
+	DMAMUX_CHCFG0 = DMAMUX_CHCFG_ENBL_MASK | 40;
+	
+	//Setup the Transfer Descriptor
+	DMA_TCD0_SADDR = (volatile unsigned long)(&ADC0_RA);  // Source is the ADC results Register
+	DMA_TCD0_SOFF = 0 ;//No Source Offset
+	DMA_TCD0_ATTR = 0 ;//No module on Source and Destination Registers.  8-bit transfers from source to Destination
+	
+	DMA_TCD0_NBYTES_MLNO= 1; //One transfer per request
+	
+	DMA_TCD0_SLAST = 0; //Do not increment the source address when a transfer is complete
+		
+	DMA_TCD0_DADDR = (volatile unsigned long)&TFC_NTSC_IMAGE;
+	DMA_TCD0_DOFF = 1; // Increment desination by one byte
+	
+	
+	DMA_TCD0_CITER_ELINKNO =32;	//Major Count, this is the number of pixels to transfer
+	DMA_TCD0_BITER_ELINKNO = 32;	//Major Count, this is the number of pixels to transfer
+															
+	DMA_TCD0_DLASTSGA = 0;
+		
+	DMA_TCD0_CSR = DMA_CSR_INTMAJOR_MASK; //DMA request is  turn off when major count is complete
+	//Enable interrupts on DMA Complete
+	DMA_INT |= DMA_INT_INT0_MASK;
+
+	enable_irq(INT_DMA0-16);
+	enable_irq(88);
+
+}
+
+void DMA_CH0_IRQ()
+{
+	//Disable DMa channel 0
+	//DMA_ERQ &= ~DMA_ERQ_ERQ0_MASK;	
+	TFC_BAT_LED0_OFF;
+	//Clear the Interrupt Request
+	DMA_CINT = 0 ;//
+	Irqs++;
+}
+
+void PortB_IRQ()
+{
+	if(PORTB_PCR10 & PORT_PCR_ISF_MASK) //Vertical Sync
+	{
+		PORTB_PCR10 |= PORT_PCR_ISF_MASK;
+					
+	}
+	if(PORTB_PCR9 & PORT_PCR_ISF_MASK) //Horizontal Sync
+		{
+			PORTB_PCR9 |= PORT_PCR_ISF_MASK;
+			
+			if(CurrentField == 0)
+			{
+				uint8_t * e;
+				unsigned long r;
+				
+				TmpEvenFieldLines++;
+				e = ((uint8_t *)(TFC_NTSC_IMAGE)) + (CurrentLine * TFC_HORIZONTAL_PIXELS);
+				
+				DMA_TCD0_DADDR = (volatile unsigned long)(e);
+				
+				CurrentLine++;
+			
+				//Restart ADC
+				ADC0_SC1A  = 12 | ADC_SC1_AIEN_MASK;
+				//Enable DMa channel 0
+				DMA_ERQ |= DMA_ERQ_ERQ0_MASK;	
+							
+				TFC_BAT_LED0_ON;
+			}
+			else
+				TmpOddFieldLines++;
+		
+		
+		}
+	if(PORTB_PCR17 & PORT_PCR_ISF_MASK) //Even/Odd
+		{
+			PORTB_PCR17 |= PORT_PCR_ISF_MASK;
+		
+		
+			
+			if(GPIOB_PDIR & (1<<17))
+			{
+				EvenFieldLines = TmpEvenFieldLines;
+				TmpEvenFieldLines=0;
+				CurrentField = 1;
+			}
+			else
+			{
+				OddFieldLines  = TmpOddFieldLines;
+				TmpOddFieldLines=0;
+				CurrentField = 0;
+				CurrentLine = 0;
+				CurrentPixel = 0;
+		   	}
+		}
+}
+
