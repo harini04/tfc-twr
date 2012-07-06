@@ -11,6 +11,7 @@
 void TFC_Init()
 {
 	TFC_InitClock();
+   // pll_init();
 	TFC_InitSysTick();
 	
 	//TFC_InitUSB_VirtualCOM_Port();
@@ -36,7 +37,7 @@ void TFC_Init()
 
 void TFC_Task()
 {
-	 TFC_USB_VirtualCOM_Process();
+	// TFC_USB_VirtualCOM_Process();
 	 TFC_UART_Process();
 	 TFC_ProcessTerminal();
 }
