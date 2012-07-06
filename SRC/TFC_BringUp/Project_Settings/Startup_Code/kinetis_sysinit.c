@@ -7,7 +7,17 @@
 #include "kinetis_sysinit.h"
 #include "derivative.h"
 #include "TFC\TFC.h"
+#include <string.h>
+#include "usb_dciapi.h" /* USB DCI API Header File */
+#include "usb_devapi.h" /* USB Device API Header File */
+#include "usb_dci_kinetis.h"    /* USB DCI Header File */
+#include "usb_bdt_kinetis.h"    /* USB BDT Structure Header File */
+#include "wdt_kinetis.h"
+#include "usb_class.h"
 
+
+
+extern void USB_ISR();
 
 typedef void (*const tIsrFunc)(void);
 typedef struct {

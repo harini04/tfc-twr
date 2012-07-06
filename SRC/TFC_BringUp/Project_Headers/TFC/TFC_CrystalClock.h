@@ -17,4 +17,8 @@ void __relocate_code__ TFC_InitClock();
 #define CORE_CLOCK			 (96000000)
 #define PERIPHERAL_BUS_CLOCK (CORE_CLOCK/2)
 
+
+
+int pll_init();
+
 #endif /* TFC_CRYSTALCLOCK_H_ */

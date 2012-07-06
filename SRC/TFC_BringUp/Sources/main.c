@@ -16,7 +16,7 @@ int main(void){
 		
 		//TFC_Task must be called in your main loop.  This keeps certain processing happy (I.E. USB)
 		TFC_Task();
-		
+
 		//This Demo program will look at the middle 2 switch to select one of 4 demo modes.
 		//Let's look at the middle 2 switches
 		switch((TFC_GetDIP_Switch()>>1)&0x03)
@@ -83,10 +83,11 @@ int main(void){
 			//Labview Application
 		
 		#ifdef TFC_USE_LINESCAN_CAMERA
+			
 			if(TFC_Ticker[0]>99 && LineScanImageReady==1)
 				{
 				TFC_Ticker[0] = 0;
-				
+				 LineScanImageReady=0;
 				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"\r\n");
 				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"L:");
 	
@@ -102,10 +103,12 @@ int main(void){
 						}										
 				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"\r\n");
 				}
+				
 		#endif
 			
 		#ifdef TFC_USE_NTSC_CAMERA
-			if(TFC_Ticker[0]>500 )
+			
+			/*if(TFC_Ticker[0]>500 )
 			{
 				TFC_Ticker[0] = 0;
 			
@@ -116,9 +119,9 @@ int main(void){
 					}
 				
 				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"\r\n");
-			}
+			}*/
 		#endif
-	
+			break;
 		}
 	}
 	

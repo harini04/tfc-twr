@@ -1,11 +1,6 @@
 #include "TFC\TFC.h"
 
 
-#define TERMINAL_PRINTF(...)   	Qprintf(&USB_OUTGOING_TO_PC_QUEUE,__VA_ARGS__)  
-#define TERMINAL_PUTC(c)        ByteEnqueue(&USB_OUTGOING_TO_PC_QUEUE,c)
-#define TERMINAL_READABLE       BytesInQueue(&USB_INCOMING_FROM_PC_QUEUE)
-#define TERMINAL_GETC           ForcedByteDequeue(&USB_INCOMING_FROM_PC_QUEUE)
-
 //*****************************************************************
 //Terminal Configuration
 //*****************************************************************
@@ -100,12 +95,12 @@ void TerminalCmd_GetLineScan(char *arg)
 	//if(t>4)
 	//	t=1;
 	
-	//TERMINAL_PRINTF("\r\nL:");
+	TERMINAL_PRINTF("\r\nL:");
 	
-//	for(i=0;i<128;i++)
-//	{
-//		TERMINAL_PRINTF("%2X,",LineScanImage0[i]);
-//	}
+	for(i=0;i<128;i++)
+	{
+		TERMINAL_PRINTF("%2X,",LineScanImage0[i]);
+	}
 //	for(i=0;i<128;i++)
 //	{
 //		TERMINAL_PRINTF("%2X,",LineScanImage1[i]);

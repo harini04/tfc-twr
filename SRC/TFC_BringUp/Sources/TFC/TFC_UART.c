@@ -38,7 +38,7 @@ void TFC_InitUARTs()
 	UART3_C2 |= UART_C2_RIE_MASK; //Enable Reciever Interrupts
 	UART4_C2 |= UART_C2_RIE_MASK; //Enable Reciever Interrupts
 	
-	//enable_irq(INT_UART3_RX_TX-16);
+	enable_irq(INT_UART3_RX_TX-16);
 	enable_irq(INT_UART4_RX_TX-16);
 		
 }
