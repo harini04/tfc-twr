@@ -13,7 +13,7 @@ static uint8_t		CurrentField=0;
 uint16_t	EvenFieldLines=0;
 uint16_t	OddFieldLines=0;
 
-uint8_t TFC_NTSC_IMAGE[267*(uint16_t)TFC_HORIZONTAL_PIXELS];
+uint8_t TFC_NTSC_IMAGE[TFC_NTSC_LINES_TO_CAPTURE][TFC_HORIZONTAL_PIXELS ] = {0};
 
 uint16_t CurrentLine = 0;
 uint16_t CurrentPixel = 0;
@@ -36,6 +36,7 @@ void TFC_InitNTSC()
 	SIM_SCGC6 |= SIM_SCGC6_DMAMUX_MASK;
 	SIM_SCGC7 |= SIM_SCGC7_DMA_MASK;
 	
+
 	//Route ADC- to DMA Channel 0;
 	DMAMUX_CHCFG0 = DMAMUX_CHCFG_ENBL_MASK | 40;
 	
@@ -48,12 +49,12 @@ void TFC_InitNTSC()
 	
 	DMA_TCD0_SLAST = 0; //Do not increment the source address when a transfer is complete
 		
-	DMA_TCD0_DADDR = (volatile unsigned long)&TFC_NTSC_IMAGE;
+	DMA_TCD0_DADDR = (volatile unsigned long)&TFC_NTSC_IMAGE[0][0];
 	DMA_TCD0_DOFF = 1; // Increment desination by one byte
 	
 	
-	DMA_TCD0_CITER_ELINKNO =32;	//Major Count, this is the number of pixels to transfer
-	DMA_TCD0_BITER_ELINKNO = 32;	//Major Count, this is the number of pixels to transfer
+	DMA_TCD0_CITER_ELINKNO = TFC_HORIZONTAL_PIXELS;	//Major Count, this is the number of pixels to transfer
+	DMA_TCD0_BITER_ELINKNO = TFC_HORIZONTAL_PIXELS;	//Major Count, this is the number of pixels to transfer
 															
 	DMA_TCD0_DLASTSGA = 0;
 		
@@ -62,14 +63,14 @@ void TFC_InitNTSC()
 	DMA_INT |= DMA_INT_INT0_MASK;
 
 	enable_irq(INT_DMA0-16);
-	enable_irq(88);
+	enable_irq(INT_PORTB-16);
 
 }
 
 void DMA_CH0_IRQ()
 {
 	//Disable DMa channel 0
-	//DMA_ERQ &= ~DMA_ERQ_ERQ0_MASK;	
+	DMA_ERQ &= ~DMA_ERQ_ERQ0_MASK;	
 	TFC_BAT_LED0_OFF;
 	//Clear the Interrupt Request
 	DMA_CINT = 0 ;//
@@ -78,35 +79,39 @@ void DMA_CH0_IRQ()
 
 void PortB_IRQ()
 {
+	uint8_t * e;
+	
 	if(PORTB_PCR10 & PORT_PCR_ISF_MASK) //Vertical Sync
 	{
 		PORTB_PCR10 |= PORT_PCR_ISF_MASK;
-					
+		OddFieldLines  = TmpOddFieldLines;
+		TmpOddFieldLines=0;	
+		CurrentLine = 0;
 	}
 	if(PORTB_PCR9 & PORT_PCR_ISF_MASK) //Horizontal Sync
 		{
-			PORTB_PCR9 |= PORT_PCR_ISF_MASK;
+		
+		     PORTB_PCR9 |= PORT_PCR_ISF_MASK;
 			
-			if(CurrentField == 0)
-			{
-				uint8_t * e;
-				unsigned long r;
+		//	if(CurrentField == 0)
+		//	{
+			
 				
-				TmpEvenFieldLines++;
-				e = ((uint8_t *)(TFC_NTSC_IMAGE)) + (CurrentLine * TFC_HORIZONTAL_PIXELS);
+			//	TmpEvenFieldLines++;
+				//e = ((uint8_t *)(TFC_NTSC_IMAGE)) + (CurrentLine * TFC_HORIZONTAL_PIXELS);
 				
-				DMA_TCD0_DADDR = (volatile unsigned long)(e);
+				DMA_TCD0_DADDR = (uint32_t)(&TFC_NTSC_IMAGE[0][0]);
 				
 				CurrentLine++;
 			
 				//Restart ADC
-				ADC0_SC1A  = 12 | ADC_SC1_AIEN_MASK;
-				//Enable DMa channel 0
+				ADC0_SC1A  = 12;
+				//Enable DMA channel 0
 				DMA_ERQ |= DMA_ERQ_ERQ0_MASK;	
 							
-				TFC_BAT_LED0_ON;
-			}
-			else
+		//		TFC_BAT_LED0_ON;
+		//	}
+		//	else
 				TmpOddFieldLines++;
 		
 		
@@ -114,7 +119,7 @@ void PortB_IRQ()
 	if(PORTB_PCR17 & PORT_PCR_ISF_MASK) //Even/Odd
 		{
 			PORTB_PCR17 |= PORT_PCR_ISF_MASK;
-		
+		/*
 		
 			
 			if(GPIOB_PDIR & (1<<17))
@@ -130,7 +135,7 @@ void PortB_IRQ()
 				CurrentField = 0;
 				CurrentLine = 0;
 				CurrentPixel = 0;
-		   	}
+		   	}*/
 		}
 }
 
