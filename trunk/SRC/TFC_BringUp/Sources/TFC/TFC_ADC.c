@@ -328,6 +328,7 @@ void InitADCs()
 	
 	#ifdef TFC_USE_NTSC_CAMERA
 	InitADC0();
+	enable_irq(INT_ADC0-16);
 	#endif
 }
 
@@ -443,7 +444,7 @@ void ADC1_IRQ()
 							LineScanImage1WorkingBuffer = &LineScanImage1Buffer[1][0];
 							
 							LineScanImage0 = &LineScanImage0Buffer[0][0];
-							LineScanImage1 = &LineScanImage0Buffer[0][0];
+							LineScanImage1 = &LineScanImage1Buffer[0][0];
 						}
 						else
 						{
@@ -452,7 +453,7 @@ void ADC1_IRQ()
 							LineScanImage1WorkingBuffer = &LineScanImage1Buffer[0][0];
 							
 							LineScanImage0 = &LineScanImage0Buffer[1][0];
-							LineScanImage1 = &LineScanImage0Buffer[1][0];
+							LineScanImage1 = &LineScanImage1Buffer[1][0];
 						}
 						
 						LineScanImageReady = TRUE;
@@ -469,7 +470,9 @@ void ADC1_IRQ()
 
 void ADC0_IRQ()
 {
-	
+	int Junk;
+	Junk = ADC0_RA;
+	 TFC_BAT_LED0_TOGGLE;
 }
 
 

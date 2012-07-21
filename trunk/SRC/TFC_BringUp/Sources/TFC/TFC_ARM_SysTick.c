@@ -27,6 +27,7 @@ void TFC_SysTickIrq()
 {
 	uint8_t i;
 	
+	TFC_BAT_LED0_TOGGLE;
 	if(DelayTimerTick<0xFFFFFFFF)
 	{
 		DelayTimerTick++;

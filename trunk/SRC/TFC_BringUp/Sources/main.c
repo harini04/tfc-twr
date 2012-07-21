@@ -2,14 +2,13 @@
 #include "derivative.h" /* include peripheral declarations */
 #include "TFC\TFC.h"
 
-
 int main(void){
 	
 	int c = 0;
 	uint8_t t;
 	uint16_t i,j;
  
-	 TFC_Init();
+    TFC_Init();
 		
 	for(;;)
 	{	
@@ -81,45 +80,61 @@ int main(void){
 		
 			//Demo Mode 3 will be in Freescale Garage Mode.  It will beam data from the Camera to the 
 			//Labview Application
-		
+			
 		#ifdef TFC_USE_LINESCAN_CAMERA
 			
 			if(TFC_Ticker[0]>99 && LineScanImageReady==1)
 				{
-				TFC_Ticker[0] = 0;
+				 TFC_Ticker[0] = 0;
 				 LineScanImageReady=0;
-				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"\r\n");
-				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"L:");
-	
-				 TFC_SetBatteryLED_Level(rand()&0x3);
+				 TERMINAL_PRINTF("\r\n");
+				 TERMINAL_PRINTF("L:");
+				 
+				 	if(t==0)
+				 		t=3;
+				 	else
+				 		t--;
+				 	
+				 TFC_SetBatteryLED_Level(t);
 				
 				 for(i=0;i<128;i++)
 						{
-								 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"%X,",LineScanImage0[i]);
+					 	 	 	 TERMINAL_PRINTF("%X,",LineScanImage0[i]);
 						}
 						for(i=0;i<128;i++)
 						{
-								 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"%X,",LineScanImage1[i]);
+								 TERMINAL_PRINTF("%X,",LineScanImage1[i]);
 						}										
-				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"\r\n");
+						TERMINAL_PRINTF("\r\n");
 				}
 				
+			
 		#endif
 			
 		#ifdef TFC_USE_NTSC_CAMERA
 			
-			/*if(TFC_Ticker[0]>500 )
+			if(TFC_Ticker[0]>1000 )
 			{
 				TFC_Ticker[0] = 0;
 			
 				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"V:");
-					for(i=0;i<26*TFC_HORIZONTAL_PIXELS;i++)
-					{
-						 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"%d,",TFC_NTSC_IMAGE[i]);
-					}
 				
-				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"\r\n");
-			}*/
+	
+				 for(i=0;i<32;i++)
+				 {
+				  for(j=0;j<TFC_HORIZONTAL_PIXELS;j++)
+					{
+					 	  TERMINAL_PRINTF("%d",TFC_NTSC_IMAGE[i*7][j]);
+					 	  if(i == 31 && j == 31)
+					 		  TERMINAL_PRINTF("\r\n");
+					 			  else
+					 	  TERMINAL_PRINTF(",");
+					}
+				  
+				
+				 }
+				
+			}
 		#endif
 			break;
 		}

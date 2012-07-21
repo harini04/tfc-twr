@@ -28,11 +28,11 @@ void TFC_InitLineScanCamera()
 
 	LineScanWorkingBuffer = 0;
 	
-	LineScanImage0WorkingBuffer = &LineScanImage0Buffer[0][0];
-	LineScanImage1WorkingBuffer = &LineScanImage1Buffer[0][0];
+	LineScanImage0WorkingBuffer = &LineScanImage0Buffer[LineScanWorkingBuffer][0];
+	LineScanImage1WorkingBuffer = &LineScanImage1Buffer[LineScanWorkingBuffer][0];
 	
 	LineScanImage0 = &LineScanImage0Buffer[1][0];
-	LineScanImage1 = &LineScanImage0Buffer[1][0];
+	LineScanImage1 = &LineScanImage1Buffer[1][0];
 }
 
 

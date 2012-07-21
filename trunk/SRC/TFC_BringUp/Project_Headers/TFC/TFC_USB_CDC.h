@@ -3,7 +3,7 @@
 #ifndef TFC_USB_CDC_H_
 #define TFC_USB_CDC_H_
 
-void USB_ISR(void);
+extern void USB_ISR(void);
 
 #define USB_CDC_QUEUE_SIZE_OUTGOING		2048
 #define USB_CDC_QUEUE_SIZE_INCOMING	    2048

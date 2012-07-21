@@ -7,25 +7,31 @@
 
 #define MAX_TERMINAL_LINE_CHARS 64
 #define MAX_TERMINAL_CMD_CHARS  32
-#define NUM_TERMINAL_CMDS       5
+#define NUM_TERMINAL_CMDS       7
 
 typedef void (*TerminalCallback)(char *);
 
 //These are the terminal command names that map to the callbacks
-const char *TerminalCommands[NUM_TERMINAL_CMDS] = {"help","reboot",	"L","vprobe","V"};
+const char *TerminalCommands[NUM_TERMINAL_CMDS] = {"help","reboot",	"L","vprobe","V", "S","H"};
 
 void TerminalCmd_Help(char *arg);
 void TerminalCmd_Reboot(char *arg);
 void TerminalCmd_GetLineScan(char *arg);
 void TerminalCmd_vprobe(char *arg);
 void TerminalCmd_V(char *arg);
+void TerminalCmd_S(char *arg);
+
+void TerminalCmd_H(char *arg);
 //Populate this array with the callback functions
 TerminalCallback TerminalCallbacks[NUM_TERMINAL_CMDS] ={
                                                             TerminalCmd_Help,
                                                             TerminalCmd_Reboot,
                                                             TerminalCmd_GetLineScan,
                                                             TerminalCmd_vprobe,
-                                                            TerminalCmd_V
+                                                            TerminalCmd_V,
+                                                            TerminalCmd_S,
+                                                            TerminalCmd_H,
+                                                                                                                        
                                                         };
 
 //*****************************************************************
@@ -128,6 +134,50 @@ void TerminalCmd_V(char *arg)
 	//		TERMINAL_PRINTF("%2X,",TFC_NTSC_IMAGE[i*10][j]);
 	//	}
 //	}
+}
+
+
+void TerminalCmd_S(char *arg)
+{
+	uint8_t i,j = 0;
+
+	int ServoSetting[2] = {0,0};
+
+	if(sscanf(arg,"%d,%d",&ServoSetting[0],&ServoSetting[1]) == 2)
+	{
+	
+	TERMINAL_PRINTF("Setting Servos to %d , %d\r\n",ServoSetting[0],ServoSetting[1]);
+	
+	TFC_SetServo(0,(float)ServoSetting[0]/100.0f); //Rescale to -1.0 to 1.0
+	TFC_SetServo(1,(float)ServoSetting[1]/100.0f);
+	}
+	else
+	{
+		TERMINAL_PRINTF("Invalid servo control string. There must be 2 command separated arguments between -100 and 100. Ex: S 43,-43");
+	}
+	
+}
+
+void TerminalCmd_H(char *arg)
+{
+	uint8_t i,j = 0;
+
+	int MotorSetting[2] = {0,0};
+
+	if(sscanf(arg,"%d,%d",&MotorSetting[0],&MotorSetting[1]) == 2)
+	{
+	
+	TERMINAL_PRINTF("Setting motor effort to to %d , %d\r\n",MotorSetting[0],MotorSetting[1]);
+	
+	TFC_SetMotorPWM((float)MotorSetting[0]/100.0f,(float)MotorSetting[1]/100.0f);
+
+
+	}
+	else
+	{
+		TERMINAL_PRINTF("Invalid motrcontrol string. There must be 2 command separated arguments between -100 and 100. Ex: H 43,-43\r\n");
+	}
+	
 }
 
 void TerminalCmd_vprobe(char *arg)

@@ -11,10 +11,9 @@
 void TFC_Init()
 {
 	TFC_InitClock();
-   // pll_init();
 	TFC_InitSysTick();
 	
-	//TFC_InitUSB_VirtualCOM_Port();
+	
 	TFC_InitTerminal();
 	
 	TFC_InitGPIO();
@@ -33,11 +32,13 @@ void TFC_Init()
 		
 	TFC_HBRIDGE_A_ENABLE;
 	TFC_HBRIDGE_B_ENABLE;
+	
+	TFC_InitUSB_VirtualCOM_Port();
 }
 
 void TFC_Task()
 {
-	// TFC_USB_VirtualCOM_Process();
+	 TFC_USB_VirtualCOM_Process();
 	 TFC_UART_Process();
 	 TFC_ProcessTerminal();
 }
