@@ -23,9 +23,8 @@
 //This is what the exposure time for the Linescan will be set to out of bootup
 #define TFC_DEFAULT_LINESCAN_EXPOSURE_TIME_uS	50000
 
-
-#define TERMINAL_USE_TWR_UART0
-//#define TERMINAL_USE_USB_CDC
+//#define TERMINAL_USE_TWR_UART0
+#define TERMINAL_USE_USB_CDC
 
 
 #define TFC_MOTOR_SWITCHING_FREQUENCY	((float)(4000.0))
@@ -33,14 +32,19 @@
 #define TFC_ENABLE_TWR_UART0
 #define TFC_ENABLE_TWR_UART1
 
-#define TFC_UART0_BAUD		115200	//This actually maps to UART4 on the chip.  but goes to UART0 on the tower card
+#define TFC_UART0_BAUD		230400	//This actually maps to UART4 on the chip.  but goes to UART0 on the tower card
 #define TFC_UART1_BAUD		115200	//This actually maps to UART3 on the chip.  but goes to UART1 on the tower card
 
-
-#define TFC_TWR_UART0_OUTGOING_QUEUE_SIZE	32768
-#define TFC_TWR_UART0_INCOMING_QUEUE_SIZE	256
-#define TFC_TWR_UART1_OUTGOING_QUEUE_SIZE	256
-#define TFC_TWR_UART1_INCOMING_QUEUE_SIZE	16
-
+#ifdef  TERMINAL_USE_USB_CDC
+	#define TFC_TWR_UART0_OUTGOING_QUEUE_SIZE	256
+	#define TFC_TWR_UART0_INCOMING_QUEUE_SIZE	256
+	#define TFC_TWR_UART1_OUTGOING_QUEUE_SIZE	32
+	#define TFC_TWR_UART1_INCOMING_QUEUE_SIZE	32
+#else
+	#define TFC_TWR_UART0_OUTGOING_QUEUE_SIZE	40000
+	#define TFC_TWR_UART0_INCOMING_QUEUE_SIZE	256
+	#define TFC_TWR_UART1_OUTGOING_QUEUE_SIZE	256
+	#define TFC_TWR_UART1_INCOMING_QUEUE_SIZE	16
+#endif
 
 #endif /* TFC_CONFIG_H_ */

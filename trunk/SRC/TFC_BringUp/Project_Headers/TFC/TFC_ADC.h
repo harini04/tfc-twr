@@ -256,7 +256,7 @@ void ADC_Read_Cal(ADC_MemMapPtr, tADC_Cal_Blk *);
 extern void ADC0_IRQ();
 extern void ADC1_IRQ();
 
-void InitADCs();
+void TFC_InitADCs();
 void PIT0_IRQ();
 
 #define TFC_POT_0_ADC_CHANNEL		18

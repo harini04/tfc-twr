@@ -72,7 +72,7 @@ int main(void){
 						{
 							t=0;
 						}			
-							TFC_SetBatteryLED_Level(t);
+					TFC_SetBatteryLED_Level(t);
 			}
 			break;
 		
@@ -113,27 +113,31 @@ int main(void){
 			
 		#ifdef TFC_USE_NTSC_CAMERA
 			
-			if(TFC_Ticker[0]>1000 )
+			if(TFC_Ticker[0]>400 )
 			{
 				TFC_Ticker[0] = 0;
-			
+				
+				while(TFC_VSyncFlag == 0)
+				{
+					TFC_Task();
+				}
+				TFC_VSyncFlag = 0;
+				while(TFC_VSyncFlag == 0)
+				{
+					TFC_Task();
+				}
 				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"V:");
 				
 	
-				 for(i=0;i<32;i++)
+				 for(i=0;i<TFC_HORIZONTAL_PIXELS;i++)
 				 {
 				  for(j=0;j<TFC_HORIZONTAL_PIXELS;j++)
 					{
-					 	  TERMINAL_PRINTF("%d",TFC_NTSC_IMAGE[i*7][j]);
-					 	  if(i == 31 && j == 31)
-					 		  TERMINAL_PRINTF("\r\n");
-					 			  else
-					 	  TERMINAL_PRINTF(",");
+					  	  ByteEnqueue(&USB_OUTGOING_TO_PC_QUEUE,0x20 + (TFC_NTSC_IMAGE[4*i][j]>>3));
 					}
-				  
-				
 				 }
-				
+				  TERMINAL_PRINTF("\r\n");
+									 		
 			}
 		#endif
 			break;

@@ -171,7 +171,7 @@ void InitADC0()
     disable_irq(57);   
      
     Master_Adc0_Config.CONFIG1 = ADLPC_NORMAL 			//No low power mode
-								| ADC_CFG1_ADIV(ADIV_4) //divide input by 4
+								| ADC_CFG1_ADIV(ADIV_2) //divide input by 4
 								//| ADLSMP_LONG 			//long sample time
 								| ADC_CFG1_MODE(MODE_8)//single ended 8-bit conversion
 								| ADC_CFG1_ADICLK(ADICLK_BUS);
@@ -295,7 +295,7 @@ void InitADC1()
 
 
 
-void InitADCs()
+void TFC_InitADCs()
 {
 	
 	InitADC1();
@@ -340,8 +340,6 @@ void PIT0_IRQ()
 	//Prime the ADC pump and start capturing POT 0
 	CurrentADC_State = ADC_STATE_CAPTURE_POT_0;
 	ADC1_SC1A  =  TFC_POT_0_ADC_CHANNEL | ADC_SC1_AIEN_MASK;  //Start the State machine at POT0
-	
-	
 }
 
 
@@ -472,7 +470,7 @@ void ADC0_IRQ()
 {
 	int Junk;
 	Junk = ADC0_RA;
-	 TFC_BAT_LED0_TOGGLE;
+	TFC_BAT_LED0_TOGGLE;
 }
 
 
