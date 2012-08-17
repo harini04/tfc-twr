@@ -25,7 +25,7 @@ static void wdog_disable(void)
  * It will configure the MCU to disable STOP and COP Modules.
  * It also set the MCG configuration and bus clock frequency.
  ****************************************************************************/
-static int pll_init()
+void TFC_InitClock()
 {
 
 	MCG_C2 = MCG_C2_RANGE(2) | MCG_C2_HGO_MASK | MCG_C2_EREFS_MASK|MCG_C2_IRCS_MASK;
@@ -85,38 +85,33 @@ static int pll_init()
 	/* Enable the ER clock of oscillators */
     	OSC_CR = OSC_CR_ERCLKEN_MASK | OSC_CR_EREFSTEN_MASK;       
     
+    	
+    	MPU_CESR=0x00; /*needed for USB!*/
+    	
+    /************* USB Part **********************/
+   	/*********************************************/   
+   	SIM_CLKDIV2 &= (uint32_t)(~(SIM_CLKDIV2_USBFRAC_MASK | SIM_CLKDIV2_USBDIV_MASK));
+
+    /* Configure USBFRAC = 0, USBDIV = 0 => frq(USBout) = 1 / 1 * frq(PLLin) */
+   	SIM_CLKDIV2 = SIM_CLKDIV2_USBDIV(1);
+   			    
+   	/* Configure USB to be clocked from PLL */
+   	SIM_SOPT2  |= (SIM_SOPT2_USBSRC_MASK | SIM_SOPT2_PLLFLLSEL_MASK);
+
+   	/* Enable USB-OTG IP clocking */
+   	SIM_SCGC4 |= (SIM_SCGC4_USBOTG_MASK); 
+    			    
+    			/* Configure enable USB regulator for device */
+   SIM_SOPT1 |= SIM_SOPT1_USBREGEN_MASK;
+   			    
+   NVICICER2 |= (1<<9);	/* Clear any pending interrupts on USB */
+   NVICISER2 |= (1<<9);	/* Enable interrupts from USB module */	 
+
+    	
     /* Now running PEE Mode */
-    return 0;
+
 
 }
 
 
-void TFC_InitClock()
-{
-	pll_init();
-	 /* SIM Configuration */
-
-	/************* USB Part **********************/
-	/*********************************************/   
-	SIM_CLKDIV2 &= (uint32_t)(~(SIM_CLKDIV2_USBFRAC_MASK | SIM_CLKDIV2_USBDIV_MASK));
-
-	/* Configure USBFRAC = 0, USBDIV = 0 => frq(USBout) = 1 / 1 * frq(PLLin) */
-	SIM_CLKDIV2 = SIM_CLKDIV2_USBDIV(1);
-	    
-	/* Configure USB to be clocked from PLL */
-	SIM_SOPT2  |= (SIM_SOPT2_USBSRC_MASK | SIM_SOPT2_PLLFLLSEL_MASK);
-
-	/* Enable USB-OTG IP clocking */
-	SIM_SCGC4 |= (SIM_SCGC4_USBOTG_MASK); 
-	    
-	/* Configure enable USB regulator for device */
-	//SIM_SOPT1 |= SIM_SOPT1_USBREGEN_MASK;
-
-	    
-	NVICICER2 |= (1<<9);	/* Clear any pending interrupts on USB */
-	NVICISER2 |= (1<<9);	/* Enable interrupts from USB module */	 
-
-		
-}
-	
 

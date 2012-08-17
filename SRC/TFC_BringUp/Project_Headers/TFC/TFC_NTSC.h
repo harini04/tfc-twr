@@ -16,10 +16,10 @@ extern uint16_t	EvenFieldLines;
 extern uint16_t	OddFieldLines;
 
 #define TFC_HORIZONTAL_TIME			(4.7 + 52.6)		//This includes the time from Horizontal sync rising Edge to end of video
-#define TFC_NTSC_ADC_SAMPLE_TIME 	(1.8)
-#define TFC_HORIZONTAL_PIXELS 		 ((uint16_t)((TFC_HORIZONTAL_TIME/TFC_NTSC_ADC_SAMPLE_TIME) + 1))//(TFC_HORIZONTAL_TIME/TFC_NTSC_ADC_SAMPLE_TIME)			
+#define TFC_NTSC_ADC_SAMPLE_TIME 	(0.9)
+#define TFC_HORIZONTAL_PIXELS 		 ((uint16_t)((TFC_HORIZONTAL_TIME/TFC_NTSC_ADC_SAMPLE_TIME) + 2))//(TFC_HORIZONTAL_TIME/TFC_NTSC_ADC_SAMPLE_TIME)			
 
-#define TFC_NTSC_LINES_TO_CAPTURE    345  //We are just going to capture the even field
+#define TFC_NTSC_LINES_TO_CAPTURE    320  //We are just going to capture the even field
 
 #define TFC_NTSC_LINES_TO_DISPLAY    (TFC_NTSC_LINES_TO_CAPTURE/TFC_HORIZONTAL_PIXELS)
  
@@ -28,4 +28,5 @@ extern uint16_t	OddFieldLines;
 
 extern uint8_t TFC_NTSC_IMAGE[TFC_NTSC_LINES_TO_CAPTURE][TFC_HORIZONTAL_PIXELS];
 
+extern volatile uint8_t TFC_VSyncFlag;
 #endif /* TFC_NTSC_H_ */
