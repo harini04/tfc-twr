@@ -8,19 +8,17 @@
 
 static uint16_t	TmpEvenFieldLines=0;
 static uint16_t	TmpOddFieldLines=0;
-static uint8_t		CurrentField=0;
-
-uint16_t	EvenFieldLines=0;
-uint16_t	OddFieldLines=0;
+static uint8_t	CurrentField=0;
 
 uint8_t TFC_NTSC_IMAGE[TFC_NTSC_LINES_TO_CAPTURE][TFC_HORIZONTAL_PIXELS] = {0};
 
 volatile uint8_t TFC_VSyncFlag = 0;
 
 uint16_t CurrentLine = 0;
-uint16_t CurrentPixel = 0;
 
-uint32_t Irqs;
+uint8_t Field=0;
+
+
 
 void TFC_InitNTSC()
 {
@@ -72,10 +70,8 @@ void DMA_CH0_IRQ()
 {
 	//Disable DMa channel 0
 	DMA_ERQ &= ~DMA_ERQ_ERQ0_MASK;	
-	TFC_BAT_LED0_OFF;
 	//Clear the Interrupt Request
 	DMA_CINT = 0 ;//
-	Irqs++;
 }
 
 void PortB_IRQ()
@@ -85,29 +81,31 @@ void PortB_IRQ()
 	if(PORTB_PCR10 & PORT_PCR_ISF_MASK) //Vertical Sync
 	{
 		PORTB_PCR10 |= PORT_PCR_ISF_MASK;
-		OddFieldLines  = TmpOddFieldLines;
-		TmpOddFieldLines=0;	
+		Field++;
 		CurrentLine = 0;
 		TFC_VSyncFlag = 1;
+		/*Need to implement a ping pong type buffer with DMA to transfer image.  There are some odd
+		 * lines showing up in the labiew display. 
+		 */
 		
 	}
 	if(PORTB_PCR9 & PORT_PCR_ISF_MASK) //Horizontal Sync
 		{
-		
+			if(Field&0x01)
+			{
 		     PORTB_PCR9 |= PORT_PCR_ISF_MASK;
 			
 		     DMA_TCD0_DADDR = (uint32_t)(&TFC_NTSC_IMAGE[CurrentLine][0]);
 			 CurrentLine++;
-			
 				//Restart ADC
 		     ADC0_SC1A  = 12;
 				//Enable DMA channel 0
 			 DMA_ERQ |= DMA_ERQ_ERQ0_MASK;	
+			}
 		}
-	if(PORTB_PCR17 & PORT_PCR_ISF_MASK) //Even/Odd
+	  if(PORTB_PCR17 & PORT_PCR_ISF_MASK) //Even/Odd
 		{
 			PORTB_PCR17 |= PORT_PCR_ISF_MASK;
-		
 		}
 }
 

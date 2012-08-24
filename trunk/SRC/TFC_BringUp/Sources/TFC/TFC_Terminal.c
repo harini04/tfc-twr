@@ -184,7 +184,6 @@ void TerminalCmd_vprobe(char *arg)
 {
 	uint8_t i;
 	
-	TERMINAL_PRINTF("\r\nE:%dD:%d\r\n",EvenFieldLines,OddFieldLines);
 	
 }
 
