@@ -18,11 +18,8 @@ void TFC_Init()
 	TFC_InitADCs();
 	TFC_InitMotorPWM();
 	TFC_InitUARTs();
+	TFC_InitLineScanCamera();
 	
-	#ifdef TFC_USE_LINESCAN_CAMERA
-		TFC_InitLineScanCamera();
-	#endif
-		
 	#ifdef TFC_USE_NTSC_CAMERA
 		TFC_InitNTSC();
 	#endif

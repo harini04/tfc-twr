@@ -33,6 +33,10 @@ int main(void){
 			else
 				TFC_BAT_LED3_OFF;
 			
+			TFC_SetMotorPWM(0,0); //Make sure motors are off
+			TFC_HBRIDGE_A_DISABLE;
+			TFC_HBRIDGE_B_DISABLE;
+			
 			break;
 		case 1 :
 			//Demo mode 1 will just moce the servos with the on-board potentiometers
@@ -55,12 +59,17 @@ int main(void){
 				TFC_SetBatteryLED_Level(t);
 			}
 			
+			TFC_SetMotorPWM(0,0); //Make sure motors are off
+			TFC_HBRIDGE_A_DISABLE;
+			TFC_HBRIDGE_B_DISABLE;
+
 			break;
 			
 		case 2 :
 			
 			//Demo Mode 2 will use the Pots to make the motors move
-			
+			TFC_HBRIDGE_A_ENABLE;
+			TFC_HBRIDGE_B_ENABLE;
 			TFC_SetMotorPWM(TFC_ReadPot0(),TFC_ReadPot1());
 					
 			//Let's put a pattern on the LEDs
@@ -112,8 +121,11 @@ int main(void){
 		#endif
 			
 		#ifdef TFC_USE_NTSC_CAMERA
-			
-			if(TFC_Ticker[0]>400 )
+			/*This code was designed for a Sparkfun
+			 * CMOS IR Camera Module - 500x582
+			 * You will probably need to adjust parameters to get other cameras to work
+			 */
+			if(TFC_Ticker[0]>100 )
 			{
 				TFC_Ticker[0] = 0;
 				
@@ -126,14 +138,16 @@ int main(void){
 				{
 					TFC_Task();
 				}
-				 Qprintf(&TFC_TWR_UART0_OUTGOING_QUEUE,"V:");
 				
-	
-				 for(i=0;i<TFC_HORIZONTAL_PIXELS;i++)
+				TERMINAL_PRINTF("V:");
+				
+				/*We actually have a 64x320 sized image.  I am just decimating to make it smaller*/
+				for(i=0;i<TFC_HORIZONTAL_PIXELS;i++)
 				 {
 				  for(j=0;j<TFC_HORIZONTAL_PIXELS;j++)
 					{
-					  	  ByteEnqueue(&USB_OUTGOING_TO_PC_QUEUE,0x20 + (TFC_NTSC_IMAGE[4*i][j]>>3));
+					  	  /*Compress the data into 5-bit intensity and send*/
+					  	  ByteEnqueue(&TERMINAL_OUT_QUEUE,0x20 + (TFC_NTSC_IMAGE[4*i][j]>>3));
 					}
 				 }
 				  TERMINAL_PRINTF("\r\n");

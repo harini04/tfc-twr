@@ -1,0 +1,2410 @@
+
+PROGRAM "C:\Products\osbdm\osbdm_pemicro\osbdm-sw\osbdm-JM60\bin\cfv234\osbdm-jm60_cfv234.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC08
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.37 Build 9279, Oct  7 2009
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+RTSHC08.C.o (ansiis.lib)                Model: SMALL,         Lang: ANSI-C
+Start08.c.o                             Model: SMALL,         Lang: ANSI-C
+bdm_cf.c.o                              Model: SMALL,         Lang: ANSI-C
+serial_io.c.o                           Model: SMALL,         Lang: ANSI-C
+cmd_processing.c.o                      Model: SMALL,         Lang: ANSI-C
+MCU.c.o                                 Model: SMALL,         Lang: ANSI-C
+USB_User_API.c.o                        Model: SMALL,         Lang: ANSI-C
+timer.c.o                               Model: SMALL,         Lang: ANSI-C
+main.c.o                                Model: SMALL,         Lang: ANSI-C
+Usb_Descriptor.c.o                      Model: SMALL,         Lang: ANSI-C
+Usb_Drv.c.o                             Model: SMALL,         Lang: ANSI-C
+Usb_Ep0_Handler.c.o                     Model: SMALL,         Lang: ANSI-C
+mc9s08jm60.c.o                          Model: SMALL,         Lang: ANSI-C
+util.c.o                                Model: SMALL,         Lang: ANSI-C
+dummy_bdm_driver.c.o                    Model: SMALL,         Lang: ANSI-C
+D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\Bootloader.c.o (bootloaderv0_3.lib)Model: SMALL,         Lang: ANSI-C
+D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\ICP_Flash.c.o (bootloaderv0_3.lib)Model: SMALL,         Lang: ANSI-C
+D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\ICP_Desc.c.o (bootloaderv0_3.lib)Model: SMALL,         Lang: ANSI-C
+board_id.c.o                            Model: SMALL,         Lang: ANSI-C
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0x19DB (_Startup)
+_startupData is allocated at 0x19E4 and uses 6 Bytes
+extern struct _tagStartup {
+  unsigned nofZeroOut     1
+  _Range   pZeroOut       0x100     616
+  _Copy    *toCopyDownBeg 0x4EA9
+} _startupData;
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.data                             30   R/W      0x100      0x11D   RAM
+.init                            132     R     0x1960     0x19E3   ROM
+.startData                        18     R     0x19E4     0x19F5   ROM
+.rodata                          247     R     0x19F6     0x1AEC   ROM
+.text                          13244     R     0x1AED     0x4EA8   ROM
+.copy                             36     R     0x4EA9     0x4ECC   ROM
+Bootloader_ROM                   941     R     0xFC00     0xFFAC   Bootloader
+.abs_section_18a0                 64   N/I     0x18A0     0x18DF   .absSeg0
+.abs_section_18e0                 64   N/I     0x18E0     0x191F   .absSeg1
+.abs_section_1920                 32   N/I     0x1920     0x193F   .absSeg2
+.abs_section_1940                 32   N/I     0x1940     0x195F   .absSeg3
+.abs_section_ffbf                  1     R     0xFFBF     0xFFBF   .absSeg4
+.abs_section_ffbd                  1     R     0xFFBD     0xFFBD   .absSeg5
+.abs_section_fabc                  4     R     0xFABC     0xFABF   .absSeg6
+.abs_section_fbc4                 58     R     0xFBC4     0xFBFD   .absSeg7
+.abs_section_fffa                  1   N/I     0xFFFA     0xFFFA   .absSeg8
+.abs_section_fffb                  1   N/I     0xFFFB     0xFFFB   .absSeg9
+.abs_section_fffc                  1   N/I     0xFFFC     0xFFFC   .absSeg10
+.abs_section_fffd                  1   N/I     0xFFFD     0xFFFD   .absSeg11
+.abs_section_1860                  6   N/I     0x1860     0x1865   .absSeg172
+.abs_section_1880                  1   N/I     0x1880     0x1880   .absSeg173
+.abs_section_1890                  8   N/I     0x1890     0x1897   .absSeg174
+.abs_section_0                     1   N/I        0x0        0x0   .absSeg15
+.abs_section_1                     1   N/I        0x1        0x1   .absSeg16
+.abs_section_2                     1   N/I        0x2        0x2   .absSeg17
+.abs_section_3                     1   N/I        0x3        0x3   .absSeg18
+.abs_section_4                     1   N/I        0x4        0x4   .absSeg19
+.abs_section_5                     1   N/I        0x5        0x5   .absSeg20
+.abs_section_6                     1   N/I        0x6        0x6   .absSeg21
+.abs_section_7                     1   N/I        0x7        0x7   .absSeg22
+.abs_section_8                     1   N/I        0x8        0x8   .absSeg23
+.abs_section_9                     1   N/I        0x9        0x9   .absSeg24
+.abs_section_a                     1   N/I        0xA        0xA   .absSeg25
+.abs_section_b                     1   N/I        0xB        0xB   .absSeg26
+.abs_section_c                     1   N/I        0xC        0xC   .absSeg27
+.abs_section_d                     1   N/I        0xD        0xD   .absSeg28
+.abs_section_e                     1   N/I        0xE        0xE   .absSeg29
+.abs_section_10                    1   N/I       0x10       0x10   .absSeg30
+.abs_section_11                    1   N/I       0x11       0x11   .absSeg31
+.abs_section_16                    1   N/I       0x16       0x16   .absSeg32
+.abs_section_17                    1   N/I       0x17       0x17   .absSeg33
+.abs_section_18                    1   N/I       0x18       0x18   .absSeg34
+.abs_section_1b                    1   N/I       0x1B       0x1B   .absSeg35
+.abs_section_1c                    1   N/I       0x1C       0x1C   .absSeg36
+.abs_section_1d                    1   N/I       0x1D       0x1D   .absSeg37
+.abs_section_1e                    1   N/I       0x1E       0x1E   .absSeg38
+.abs_section_20                    1   N/I       0x20       0x20   .absSeg39
+.abs_section_25                    1   N/I       0x25       0x25   .absSeg40
+.abs_section_28                    1   N/I       0x28       0x28   .absSeg41
+.abs_section_2b                    1   N/I       0x2B       0x2B   .absSeg42
+.abs_section_2e                    1   N/I       0x2E       0x2E   .absSeg43
+.abs_section_31                    1   N/I       0x31       0x31   .absSeg44
+.abs_section_34                    1   N/I       0x34       0x34   .absSeg45
+.abs_section_3a                    1   N/I       0x3A       0x3A   .absSeg46
+.abs_section_3b                    1   N/I       0x3B       0x3B   .absSeg47
+.abs_section_3c                    1   N/I       0x3C       0x3C   .absSeg48
+.abs_section_3d                    1   N/I       0x3D       0x3D   .absSeg49
+.abs_section_3e                    1   N/I       0x3E       0x3E   .absSeg50
+.abs_section_3f                    1   N/I       0x3F       0x3F   .absSeg51
+.abs_section_42                    1   N/I       0x42       0x42   .absSeg52
+.abs_section_43                    1   N/I       0x43       0x43   .absSeg53
+.abs_section_44                    1   N/I       0x44       0x44   .absSeg54
+.abs_section_45                    1   N/I       0x45       0x45   .absSeg55
+.abs_section_46                    1   N/I       0x46       0x46   .absSeg56
+.abs_section_47                    1   N/I       0x47       0x47   .absSeg57
+.abs_section_48                    1   N/I       0x48       0x48   .absSeg58
+.abs_section_49                    1   N/I       0x49       0x49   .absSeg59
+.abs_section_4a                    1   N/I       0x4A       0x4A   .absSeg60
+.abs_section_4b                    1   N/I       0x4B       0x4B   .absSeg61
+.abs_section_4c                    1   N/I       0x4C       0x4C   .absSeg62
+.abs_section_50                    1   N/I       0x50       0x50   .absSeg63
+.abs_section_51                    1   N/I       0x51       0x51   .absSeg64
+.abs_section_52                    1   N/I       0x52       0x52   .absSeg65
+.abs_section_53                    1   N/I       0x53       0x53   .absSeg66
+.abs_section_58                    1   N/I       0x58       0x58   .absSeg67
+.abs_section_59                    1   N/I       0x59       0x59   .absSeg68
+.abs_section_5a                    1   N/I       0x5A       0x5A   .absSeg69
+.abs_section_5b                    1   N/I       0x5B       0x5B   .absSeg70
+.abs_section_5c                    1   N/I       0x5C       0x5C   .absSeg71
+.abs_section_5d                    1   N/I       0x5D       0x5D   .absSeg72
+.abs_section_60                    1   N/I       0x60       0x60   .absSeg73
+.abs_section_65                    1   N/I       0x65       0x65   .absSeg74
+.abs_section_68                    1   N/I       0x68       0x68   .absSeg75
+.abs_section_6c                    1   N/I       0x6C       0x6C   .absSeg76
+.abs_section_6d                    1   N/I       0x6D       0x6D   .absSeg77
+.abs_section_6e                    1   N/I       0x6E       0x6E   .absSeg78
+.abs_section_70                    1   N/I       0x70       0x70   .absSeg79
+.abs_section_71                    1   N/I       0x71       0x71   .absSeg80
+.abs_section_72                    1   N/I       0x72       0x72   .absSeg81
+.abs_section_73                    1   N/I       0x73       0x73   .absSeg82
+.abs_section_80                    1   N/I       0x80       0x80   .absSeg83
+.abs_section_88                    1   N/I       0x88       0x88   .absSeg84
+.abs_section_89                    1   N/I       0x89       0x89   .absSeg85
+.abs_section_8a                    1   N/I       0x8A       0x8A   .absSeg86
+.abs_section_90                    1   N/I       0x90       0x90   .absSeg87
+.abs_section_91                    1   N/I       0x91       0x91   .absSeg88
+.abs_section_92                    1   N/I       0x92       0x92   .absSeg89
+.abs_section_93                    1   N/I       0x93       0x93   .absSeg90
+.abs_section_94                    1   N/I       0x94       0x94   .absSeg91
+.abs_section_95                    1   N/I       0x95       0x95   .absSeg92
+.abs_section_96                    1   N/I       0x96       0x96   .absSeg93
+.abs_section_97                    1   N/I       0x97       0x97   .absSeg94
+.abs_section_98                    1   N/I       0x98       0x98   .absSeg95
+.abs_section_9d                    1   N/I       0x9D       0x9D   .absSeg96
+.abs_section_9e                    1   N/I       0x9E       0x9E   .absSeg97
+.abs_section_9f                    1   N/I       0x9F       0x9F   .absSeg98
+.abs_section_a0                    1   N/I       0xA0       0xA0   .absSeg99
+.abs_section_a1                    1   N/I       0xA1       0xA1   .absSeg100
+.abs_section_a2                    1   N/I       0xA2       0xA2   .absSeg101
+.abs_section_a3                    1   N/I       0xA3       0xA3   .absSeg102
+.abs_section_1800                  1   N/I     0x1800     0x1800   .absSeg103
+.abs_section_1801                  1   N/I     0x1801     0x1801   .absSeg104
+.abs_section_1802                  1   N/I     0x1802     0x1802   .absSeg105
+.abs_section_1803                  1   N/I     0x1803     0x1803   .absSeg106
+.abs_section_1809                  1   N/I     0x1809     0x1809   .absSeg107
+.abs_section_180a                  1   N/I     0x180A     0x180A   .absSeg108
+.abs_section_1816                  1   N/I     0x1816     0x1816   .absSeg109
+.abs_section_1817                  1   N/I     0x1817     0x1817   .absSeg110
+.abs_section_1818                  1   N/I     0x1818     0x1818   .absSeg111
+.abs_section_1820                  1   N/I     0x1820     0x1820   .absSeg112
+.abs_section_1821                  1   N/I     0x1821     0x1821   .absSeg113
+.abs_section_1823                  1   N/I     0x1823     0x1823   .absSeg114
+.abs_section_1824                  1   N/I     0x1824     0x1824   .absSeg115
+.abs_section_1825                  1   N/I     0x1825     0x1825   .absSeg116
+.abs_section_1826                  1   N/I     0x1826     0x1826   .absSeg117
+.abs_section_1840                  1   N/I     0x1840     0x1840   .absSeg118
+.abs_section_1841                  1   N/I     0x1841     0x1841   .absSeg119
+.abs_section_1842                  1   N/I     0x1842     0x1842   .absSeg120
+.abs_section_1844                  1   N/I     0x1844     0x1844   .absSeg121
+.abs_section_1845                  1   N/I     0x1845     0x1845   .absSeg122
+.abs_section_1846                  1   N/I     0x1846     0x1846   .absSeg123
+.abs_section_1848                  1   N/I     0x1848     0x1848   .absSeg124
+.abs_section_1849                  1   N/I     0x1849     0x1849   .absSeg125
+.abs_section_184a                  1   N/I     0x184A     0x184A   .absSeg126
+.abs_section_184c                  1   N/I     0x184C     0x184C   .absSeg127
+.abs_section_184d                  1   N/I     0x184D     0x184D   .absSeg128
+.abs_section_184e                  1   N/I     0x184E     0x184E   .absSeg129
+.abs_section_1850                  1   N/I     0x1850     0x1850   .absSeg130
+.abs_section_1851                  1   N/I     0x1851     0x1851   .absSeg131
+.abs_section_1852                  1   N/I     0x1852     0x1852   .absSeg132
+.abs_section_1854                  1   N/I     0x1854     0x1854   .absSeg133
+.abs_section_1855                  1   N/I     0x1855     0x1855   .absSeg134
+.abs_section_1856                  1   N/I     0x1856     0x1856   .absSeg135
+.abs_section_1858                  1   N/I     0x1858     0x1858   .absSeg136
+.abs_section_1859                  1   N/I     0x1859     0x1859   .absSeg137
+.abs_section_185a                  1   N/I     0x185A     0x185A   .absSeg138
+.abs_section_12                    2   N/I       0x12       0x13   .absSeg139
+.abs_section_14                    2   N/I       0x14       0x15   .absSeg140
+.abs_section_21                    2   N/I       0x21       0x22   .absSeg141
+.abs_section_23                    2   N/I       0x23       0x24   .absSeg142
+.abs_section_26                    2   N/I       0x26       0x27   .absSeg143
+.abs_section_29                    2   N/I       0x29       0x2A   .absSeg144
+.abs_section_2c                    2   N/I       0x2C       0x2D   .absSeg145
+.abs_section_2f                    2   N/I       0x2F       0x30   .absSeg146
+.abs_section_32                    2   N/I       0x32       0x33   .absSeg147
+.abs_section_35                    2   N/I       0x35       0x36   .absSeg148
+.abs_section_38                    2   N/I       0x38       0x39   .absSeg149
+.abs_section_40                    2   N/I       0x40       0x41   .absSeg150
+.abs_section_54                    2   N/I       0x54       0x55   .absSeg151
+.abs_section_56                    2   N/I       0x56       0x57   .absSeg152
+.abs_section_61                    2   N/I       0x61       0x62   .absSeg153
+.abs_section_63                    2   N/I       0x63       0x64   .absSeg154
+.abs_section_66                    2   N/I       0x66       0x67   .absSeg155
+.abs_section_69                    2   N/I       0x69       0x6A   .absSeg156
+.abs_section_74                    2   N/I       0x74       0x75   .absSeg157
+.abs_section_76                    2   N/I       0x76       0x77   .absSeg158
+.abs_section_1806                  2   N/I     0x1806     0x1807   .absSeg159
+.abs_section_1810                  2   N/I     0x1810     0x1811   .absSeg160
+.abs_section_1812                  2   N/I     0x1812     0x1813   .absSeg161
+.abs_section_1814                  2   N/I     0x1814     0x1815   .absSeg162
+.abs_section_b0                    1   N/I       0xB0       0xB0   .absSeg163
+.abs_section_b1                    1   N/I       0xB1       0xB1   .absSeg164
+.abs_section_b2                    2   N/I       0xB2       0xB3   .absSeg165
+.abs_section_b4                    2   N/I       0xB4       0xB5   .absSeg166
+.abs_section_b6                    1   N/I       0xB6       0xB6   .absSeg167
+.abs_section_b7                    1   N/I       0xB7       0xB7   .absSeg168
+.abs_section_b8                    2   N/I       0xB8       0xB9   .absSeg169
+.abs_section_ba                    1   N/I       0xBA       0xBA   .absSeg170
+.abs_section_bb                    2   N/I       0xBB       0xBC   .absSeg171
+.bss                              26   R/W      0x11E      0x137   RAM
+.common                          560   R/W      0x138      0x367   RAM
+.stack                           512   R/W      0x368      0x567   RAM
+.vectSeg175_vect                   2     R     0xFFFE     0xFFFF   .vectSeg175
+
+Summary of section sizes per section type:
+READ_ONLY (R):        395C (dec:    14684)
+READ_WRITE (R/W):      468 (dec:     1128)
+NO_INIT (N/I):         18C (dec:      396)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xFC00   _Entry
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- RTSHC08.C.o (ansiis.lib) --
+- PROCEDURES:
+     _PUSH_ARGS_L                              1AED      20      32       2   .text       
+     _ENTER_UNARY_L                            1B0D      29      41       1   .text       
+     _ENTER_BINARY_L                           1B36      16      22       2   .text       
+     _ENTER_BINARY_L_RC                        1B4C      19      25       4   .text       
+     _IDIVMOD                                  1B65      69     105       1   .text       
+     _LADD_k_is_k_plus_j                       1BCE      1F      31       1   .text       
+     _LSUB_k_is_k_minus_j                      1BED      1F      31       1   .text       
+     _LAND_k_is_k_and_j                        1C0C      1F      31       1   .text       
+     _LOR_k_is_k_or_j                          1C2B      1F      31       2   .text       
+     _LCMP_k_rel_j                             1C4A      1F      31       1   .text       
+     _IDIVU_STAR08                             1C69       D      13       1   .text       
+     _LADD                                     1C76       6       6       6   .text       
+     _LSUB_RC                                  1C7C       6       6       2   .text       
+     _LAND_RC                                  1C82       6       6       3   .text       
+     _LOR                                      1C88       6       6       6   .text       
+     _LOR_RC                                   1C8E       6       6       4   .text       
+     _LLSL                                     1C94      16      22      19   .text       
+     _LCMP_RC                                  1CAA       6       6       5   .text       
+     _COPY                                     1CB0      30      48       7   .text       
+     _POP32                                    1CE0      1A      26      21   .text       
+     _SEXT16_32                                1CFA       D      13       1   .text       
+     _Jump_Table_Addr                          1D07      16      22       3   .text       
+     _Jump_Table_Offset                        1D1D      19      25       5   .text       
+     _Jump_Table_Header_Offset                 1D36      24      36       9   .text       
+     _Search_Table_8_Addr                      1D5A      21      33       1   .text       
+     _PUSH_CC                                  1D7B       F      15       1   .text       
+     _POP_CC                                   1D8A       F      15       1   .text       
+- VARIABLES:
+MODULE:                 -- Start08.c.o --
+- PROCEDURES:
+     loadByte                                  1960       E      14       5   .init       
+     Init                                      196E      6D     109       1   .init       
+     _Startup                                  19DB       9       9       1   .init       
+- VARIABLES:
+     _startupData                              19E4       6       6       4   .startData  
+- LABELS:
+     __SEG_END_SSTACK                           568       0       0       1               
+MODULE:                 -- bdm_cf.c.o --
+- PROCEDURES:
+     t_init                                    1D99      10      16       2   .text       
+     t_hard_reset                              1DA9      21      33       1   .text       
+     t_power_reset                             1DCA      1A      26       1   .text       
+     t_debug_init                              1DE4       1       1       1   .text       
+     t_serial_init                             1DE5       6       6       1   .text       
+     t_reset                                   1DEB      2B      43       1   .text       
+     t_txrx                                    1E16      55      85      15   .text       
+     bdmcf_rx                                  1E6B      A8     168      19   .text       
+     bdmcf_tx_msg                              1F13       7       7      13   .text       
+     bdmcf_tx_cmdaddr                          1F1A       C      12       8   .text       
+     bdmcf_tx_32                               1F26      1C      28       3   .text       
+     t_write_ad                                1F42      65     101       1   .text       
+     t_read_ad                                 1FA7      7E     126       1   .text       
+     t_write_creg                              2025      39      57       3   .text       
+     t_read_creg                               205E      47      71       3   .text       
+     t_write_dreg                              20A5      37      55       1   .text       
+     t_read_dreg                               20DC      12      18       1   .text       
+     bdmcf_transmit4                           20EE      2E      46       1   .text       
+     cf_write_or_fill_mem                      211C     121     289       4   .text       
+     t_write_mem                               223D      24      36       2   .text       
+     t_read_mem                                2261     15A     346      11   .text       
+     t_fill_mem                                23BB      23      35       1   .text       
+     bdmcf_pst_status                          23DE       7       7       2   .text       
+     t_stat                                    23E5      2D      45       1   .text       
+     t_get_ver                                 2412      29      41       1   .text       
+     t_halt                                    243B      1F      31       1   .text       
+     t_go                                      245A      88     136       1   .text       
+     t_step                                    24E2      88     136       1   .text       
+     bdm_wbdreg                                256A      3D      61       2   .text       
+     bdm_rbdreg                                25A7      76     118       4   .text       
+     t_assert_ta                               261D      1E      30       1   .text       
+     t_resync                                  263B      1B      27       1   .text       
+     cf_reset_nosync                           2656      12      18       1   .text       
+     jdly_loop                                 2668      1A      26       2   .text       
+     t_unsecure                                2682      B2     178       2   .text       
+     jtag_init                                 2734      51      81       1   .text       
+     jtag_transition_shift                     2785      32      50       4   .text       
+     jtag_transition_reset                     27B7      1C      28       1   .text       
+     jtag_write                                27D3      84     132       3   .text       
+     jtag_read                                 2857      A4     164       1   .text       
+     t_flash_power                             28FB       3       3       2   .text       
+     t_get_clock                               28FE       8       8       1   .text       
+     delay_492ns                               2906      29      41       8   .text       
+     t_swap17                                  292F      D3     211       6   .text       
+     cf_do_dsack                               2A02      12      18      23   .text       
+     t_xchange                                 2A14     33E     830      35   .text       
+     outp                                      2D52      33      51       2   .text       
+     cfinp                                     2D85      26      38       2   .text       
+     t_special_feature                         2DAB     FDD    4061     279   .text       
+     t_flash_prog                              3D88       3       3       1   .text       
+     t_set_clock                               3D8B       1       1       1   .text       
+     t_config                                  3D8C       3       3       1   .text       
+- VARIABLES:
+     TARGET_TYPE                               19F6       1       1       1   .rodata     
+     FIRMWARE_TYPE                             19F7       1       1       1   .rodata     
+     eStatus                                    11E       1       1       3   .bss        
+     rxBuff                                     11F      10      16     112   .bss        
+     mod                                        138       2       2       3   .common     
+     sStatus                                    13A       1       1       8   .common     
+     rBuf                                       13B       2       2       1   .common     
+     hold_sendword                              13D       2       2      10   .common     
+     hold_block_length                          13F       2       2      14   .common     
+     hold_sendaddress                           141       4       4      11   .common     
+     hold_senddata                              145       4       4      16   .common     
+     addrH                                      149       2       2       5   .common     
+     addrL                                      14B       2       2       5   .common     
+MODULE:                 -- serial_io.c.o --
+- PROCEDURES:
+     SCI_Init                                  3D8F      26      38       1   .text       
+     SCI_Close                                 3DB5      10      16       1   .text       
+     SCI_save_and_disable_interrupt_settings       3DC5       D      13       1   .text       
+     SCI_restore_interrupt_settings            3DD2       D      13       1   .text       
+     SCI_Transmit                              3DDF       D      13       1   .text       
+     SCI_SendBuffer                            3DEC      20      32       1   .text       
+     SCI_get_pending_chars_during_an_interrupt       3E0C      46      70       6   .text       
+     SCI_ReceiveISR                            3E52       5       5       1   .text       
+     SCI_OverrunISR                            3E57      10      16       1   .text       
+     SCI_GetOverflowStatus                     3E67       8       8       1   .text       
+     SCI_CharReady                             3E6F       D      13       2   .text       
+     SCI_GetChar                               3E7C      27      39       1   .text       
+- VARIABLES:
+     sci_rx_sptr                                12F       1       1       8   .bss        
+     sci_rx_eptr                                130       1       1       8   .bss        
+     sci_virtual_serial_port_is_enabled         131       1       1       4   .bss        
+     sci_rx_buf                                 14D     100     256       2   .common     
+     sci_rx_overflow_occured                    24D       1       1       6   .common     
+     sci_remember_SCI1C2_REI                    24E       1       1       3   .common     
+     temp_sci_stat                              24F       1       1       3   .common     
+     temp_sci_data                              250       1       1       2   .common     
+MODULE:                 -- cmd_processing.c.o --
+- PROCEDURES:
+     get_mem_header                            3EA3      33      51       1   .text       
+     debug_command_send_return                 3ED6       B      11       1   .text       
+     serial_command_send_return                3EE1       B      11       2   .text       
+     debug_command_exec                        3EEC     4D6    1238      68   .text       
+     serial_command_exec                       43C2      53      83       1   .text       
+     serial_send_data_if_pending               4415      4A      74       1   .text       
+- VARIABLES:
+     tCable_Status                              251       1       1       1   .common     
+     uCmd                                       252       1       1       6   .common     
+     uType                                      253       1       1       9   .common     
+     uAddr                                      254       4       4      24   .common     
+     uWidth                                     258       1       1       9   .common     
+     uLen                                       259       4       4       5   .common     
+     debug_cmd_pending                          25D       1       1       4   .common     
+     serial_cmd_pending                         25E       1       1       4   .common     
+MODULE:                 -- MCU.c.o --
+- PROCEDURES:
+     Mcu_Init                                  445F      6E     110       1   .text       
+     MCG_Init                                  44CD      22      34       1   .text       
+     bdm_vsw_en                                44EF       D      13       1   .text       
+     bdm_vtrg_en                               44FC      1A      26       3   .text       
+     tPower_Good                               4516      11      17       3   .text       
+     CheckTargetPower                          4527       B      11       1   .text       
+- VARIABLES:
+     FP_Stat                                    25F       1       1       1   .common     
+     VPP_Stat                                   260       1       1       1   .common     
+MODULE:                 -- USB_User_API.c.o --
+- PROCEDURES:
+     Endpoint_Init                             4532      39      57       1   .text       
+     EndPoint_IN                               456B      89     137       2   .text       
+     EndPoint_OUT                              45F4      CC     204       2   .text       
+- VARIABLES:
+     EP1_BDT_Buffer                            18A0      40      64       2   .abs_section_18a0
+     EP2_BDT_Buffer                            18E0      40      64       2   .abs_section_18e0
+     EP3_BDT_Buffer                            1920      20      32       2   .abs_section_1920
+     EP4_BDT_Buffer                            1940      20      32       2   .abs_section_1940
+     EP1_Buffer                                 261      40      64      22   .common     
+     EP2_Buffer                                 2A1      40      64      13   .common     
+     EP3_Buffer                                 2E1      20      32       9   .common     
+     EP4_Buffer                                 301      20      32       5   .common     
+MODULE:                 -- timer.c.o --
+- PROCEDURES:
+     wait_ms                                   46C0      7D     125      11   .text       
+     dly                                       473D      1C      28      10   .text       
+     dly_10us                                  4759      32      50       1   .text       
+- VARIABLES:
+MODULE:                 -- main.c.o --
+- PROCEDURES:
+     main                                      478B      48      72       1   .text       
+     Dummy_ISR                                 47D3       1       1      24   .text       
+     _Entry                                    FC00      31      49       0   Bootloader_ROM
+     bootloader_dly_20us                       FC31       8       8       2   Bootloader_ROM
+- VARIABLES:
+     NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
+     NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
+     _UserEntry                                FABC       4       4       1   .abs_section_fabc
+     _Usr_Vector                               FBC4      3A      58       0   .abs_section_fbc4
+MODULE:                 -- Usb_Descriptor.c.o --
+- PROCEDURES:
+- VARIABLES:
+     Device_Dsc_No_Serial_Number               19F8      12      18       1   .rodata     
+     Device_Dsc_With_Serial_Number             1A0A      12      18       1   .rodata     
+     Cfg_01                                    1A1C      37      55       2   .rodata     
+     sd000                                     1A53       4       4       1   .rodata     
+     sd001                                     1A57      38      56       1   .rodata     
+     sd002                                     1A8F      26      38       1   .rodata     
+     sd003                                     1AB5      38      56       1   .rodata     
+     OSSerialNum                                100      10      16       2   .data       
+     Str_Des                                    110       A      10       1   .data       
+     Cfg_Des                                    11A       4       4       1   .data       
+     _Serial3                                  FFFA       1       1       3   .abs_section_fffa
+     _Serial2                                  FFFB       1       1       3   .abs_section_fffb
+     _Serial1                                  FFFC       1       1       3   .abs_section_fffc
+     _Serial0                                  FFFD       1       1       3   .abs_section_fffd
+MODULE:                 -- Usb_Drv.c.o --
+- PROCEDURES:
+     Initialize_USBModule                      47D4      32      50       1   .text       
+     Check_USBBus_Status                       4806      2F      47       2   .text       
+     USB_Suspend                               4835      1C      28       1   .text       
+     USB_WakeFrom_Suspend                      4851       7       7       2   .text       
+     USB_Remote_Wakeup                         4858      24      36       1   .text       
+     USB_SOF_Handler                           487C       3       3       1   .text       
+     USB_Stall_Handler                         487F      11      17       1   .text       
+     USB_Error_Handler                         4890      12      18       1   .text       
+     USB_Bus_Reset_Handler                     48A2      35      53       1   .text       
+     USB_Buf_Rdy                               48D7       B      11       2   .text       
+     Clear_Mem                                 48E2      1D      29       3   .text       
+     USB_ISR                                   48FF      5E      94       1   .text       
+     IRQ_ISR                                   495D       5       5       1   .text       
+     USB_WakeUp                                4962      3B      59       1   .text       
+- VARIABLES:
+     delay_count.1                              132       2       2       3   .bss        
+     Bdtmap                                    1860      20      32      57   .abs_section_1860
+     CtrlTrf_Data                              1880       8       8       7   .abs_section_1880
+     Setup_Pkt                                 1890       8       8      23   .abs_section_1890
+     Usb_Device_State                           321       1       1      15   .common     
+     Usb_Stat                                   322       1       1       8   .common     
+     Usb_Active_Cfg                             323       1       1       4   .common     
+     Usb_Alt_Intf                               324       1       1       4   .common     
+MODULE:                 -- Usb_Ep0_Handler.c.o --
+- PROCEDURES:
+     USB_Transaction_Handler                   499D      5B      91       1   .text       
+     USB_CtrlTrf_Out_Handler                   49F8       D      13       1   .text       
+     USB_CtrlTrf_RxData                        4A05      59      89       1   .text       
+     USB_CtrlTrf_In_Handler                    4A5E      24      36       1   .text       
+     USB_CtrlTrf_TxData                        4A82      6A     106       2   .text       
+     USB_CtrlTrf_SetupStage_Processing         4AEC      11      17       1   .text       
+     USB_CtrlEP_SetupStage_Complete            4AFD      76     118       1   .text       
+     USB_Prepare_Next_Trf                      4B73      17      23       5   .text       
+     USB_StdReq_Handler                        4B8A      63      99       1   .text       
+     USB_StdGetDsc_Handler                     4BED      AE     174       1   .text       
+     USB_StdSetCfg_Handler                     4C9B      2C      44       1   .text       
+     USB_StdGetStatus_Handler                  4CC7      6C     108       1   .text       
+     USB_StdFeatureReq_Handler                 4D33      C3     195       1   .text       
+- VARIABLES:
+     Ctrl_Trf_State                             325       1       1       7   .common     
+     Ctrl_Trf_Session_Owner                     326       1       1      10   .common     
+     pSrc                                       327       2       2       9   .common     
+     pObj                                       329       2       2       5   .common     
+     Transfer_Cnt                               32B       2       2      18   .common     
+MODULE:                 -- mc9s08jm60.c.o --
+- PROCEDURES:
+- VARIABLES:
+     _PTAD                                        0       1       1       0   .abs_section_0
+     _PTADD                                       1       1       1       0   .abs_section_1
+     _PTBD                                        2       1       1      28   .abs_section_2
+     _PTBDD                                       3       1       1      11   .abs_section_3
+     _PTCD                                        4       1       1       5   .abs_section_4
+     _PTCDD                                       5       1       1       7   .abs_section_5
+     _PTDD                                        6       1       1       5   .abs_section_6
+     _PTDDD                                       7       1       1       1   .abs_section_7
+     _PTED                                        8       1       1      51   .abs_section_8
+     _PTEDD                                       9       1       1       6   .abs_section_9
+     _PTFD                                        A       1       1       1   .abs_section_a
+     _PTFDD                                       B       1       1       1   .abs_section_b
+     _PTGD                                        C       1       1       2   .abs_section_c
+     _PTGDD                                       D       1       1       2   .abs_section_d
+     _ACMPSC                                      E       1       1       0   .abs_section_e
+     _ADCSC1                                     10       1       1       4   .abs_section_10
+     _ADCSC2                                     11       1       1       1   .abs_section_11
+     _ADCCFG                                     16       1       1       1   .abs_section_16
+     _APCTL1                                     17       1       1       1   .abs_section_17
+     _APCTL2                                     18       1       1       1   .abs_section_18
+     _IRQSC                                      1B       1       1       2   .abs_section_1b
+     _KBISC                                      1C       1       1       0   .abs_section_1c
+     _KBIPE                                      1D       1       1       0   .abs_section_1d
+     _KBIES                                      1E       1       1       0   .abs_section_1e
+     _TPM1SC                                     20       1       1       1   .abs_section_20
+     _TPM1C0SC                                   25       1       1       3   .abs_section_25
+     _TPM1C1SC                                   28       1       1       2   .abs_section_28
+     _TPM1C2SC                                   2B       1       1       2   .abs_section_2b
+     _TPM1C3SC                                   2E       1       1       2   .abs_section_2e
+     _TPM1C4SC                                   31       1       1       0   .abs_section_31
+     _TPM1C5SC                                   34       1       1       0   .abs_section_34
+     _SCI1C1                                     3A       1       1       1   .abs_section_3a
+     _SCI1C2                                     3B       1       1       7   .abs_section_3b
+     _SCI1S1                                     3C       1       1       4   .abs_section_3c
+     _SCI1S2                                     3D       1       1       0   .abs_section_3d
+     _SCI1C3                                     3E       1       1       1   .abs_section_3e
+     _SCI1D                                      3F       1       1       3   .abs_section_3f
+     _SCI2C1                                     42       1       1       0   .abs_section_42
+     _SCI2C2                                     43       1       1       0   .abs_section_43
+     _SCI2S1                                     44       1       1       0   .abs_section_44
+     _SCI2S2                                     45       1       1       0   .abs_section_45
+     _SCI2C3                                     46       1       1       0   .abs_section_46
+     _SCI2D                                      47       1       1       0   .abs_section_47
+     _MCGC1                                      48       1       1       4   .abs_section_48
+     _MCGC2                                      49       1       1       2   .abs_section_49
+     _MCGTRM                                     4A       1       1       0   .abs_section_4a
+     _MCGSC                                      4B       1       1       6   .abs_section_4b
+     _MCGC3                                      4C       1       1       2   .abs_section_4c
+     _SPI1C1                                     50       1       1       4   .abs_section_50
+     _SPI1C2                                     51       1       1       1   .abs_section_51
+     _SPI1BR                                     52       1       1       1   .abs_section_52
+     _SPI1S                                      53       1       1       2   .abs_section_53
+     _IICA                                       58       1       1       0   .abs_section_58
+     _IICF                                       59       1       1       0   .abs_section_59
+     _IICC1                                      5A       1       1       0   .abs_section_5a
+     _IICS                                       5B       1       1       0   .abs_section_5b
+     _IICD                                       5C       1       1       0   .abs_section_5c
+     _IICC2                                      5D       1       1       0   .abs_section_5d
+     _TPM2SC                                     60       1       1       2   .abs_section_60
+     _TPM2C0SC                                   65       1       1       1   .abs_section_65
+     _TPM2C1SC                                   68       1       1       1   .abs_section_68
+     _RTCSC                                      6C       1       1       0   .abs_section_6c
+     _RTCCNT                                     6D       1       1       0   .abs_section_6d
+     _RTCMOD                                     6E       1       1       0   .abs_section_6e
+     _SPI2C1                                     70       1       1       0   .abs_section_70
+     _SPI2C2                                     71       1       1       0   .abs_section_71
+     _SPI2BR                                     72       1       1       0   .abs_section_72
+     _SPI2S                                      73       1       1       0   .abs_section_73
+     _USBCTL0                                    80       1       1      13   .abs_section_80
+     _PERID                                      88       1       1       0   .abs_section_88
+     _IDCOMP                                     89       1       1       0   .abs_section_89
+     _REV                                        8A       1       1       0   .abs_section_8a
+     _INTSTAT                                    90       1       1      24   .abs_section_90
+     _INTENB                                     91       1       1      13   .abs_section_91
+     _ERRSTAT                                    92       1       1       4   .abs_section_92
+     _ERRENB                                     93       1       1       2   .abs_section_93
+     _STAT                                       94       1       1       4   .abs_section_94
+     _CTL                                        95       1       1      11   .abs_section_95
+     _ADDR                                       96       1       1       5   .abs_section_96
+     _FRMNUML                                    97       1       1       0   .abs_section_97
+     _FRMNUMH                                    98       1       1       0   .abs_section_98
+     _EPCTL0                                     9D       1       1       7   .abs_section_9d
+     _EPCTL1                                     9E       1       1       3   .abs_section_9e
+     _EPCTL2                                     9F       1       1       1   .abs_section_9f
+     _EPCTL3                                     A0       1       1       1   .abs_section_a0
+     _EPCTL4                                     A1       1       1       1   .abs_section_a1
+     _EPCTL5                                     A2       1       1       0   .abs_section_a2
+     _EPCTL6                                     A3       1       1       0   .abs_section_a3
+     _SRS                                      1800       1       1       2   .abs_section_1800
+     _SBDFR                                    1801       1       1       0   .abs_section_1801
+     _SOPT1                                    1802       1       1       2   .abs_section_1802
+     _SOPT2                                    1803       1       1       0   .abs_section_1803
+     _SPMSC1                                   1809       1       1       1   .abs_section_1809
+     _SPMSC2                                   180A       1       1       0   .abs_section_180a
+     _DBGC                                     1816       1       1       0   .abs_section_1816
+     _DBGT                                     1817       1       1       0   .abs_section_1817
+     _DBGS                                     1818       1       1       0   .abs_section_1818
+     _FCDIV                                    1820       1       1       1   .abs_section_1820
+     _FOPT                                     1821       1       1       0   .abs_section_1821
+     _FCNFG                                    1823       1       1       0   .abs_section_1823
+     _FPROT                                    1824       1       1       0   .abs_section_1824
+     _FSTAT                                    1825       1       1       0   .abs_section_1825
+     _FCMD                                     1826       1       1       0   .abs_section_1826
+     _PTAPE                                    1840       1       1       0   .abs_section_1840
+     _PTASE                                    1841       1       1       0   .abs_section_1841
+     _PTADS                                    1842       1       1       0   .abs_section_1842
+     _PTBPE                                    1844       1       1       0   .abs_section_1844
+     _PTBSE                                    1845       1       1       0   .abs_section_1845
+     _PTBDS                                    1846       1       1       0   .abs_section_1846
+     _PTCPE                                    1848       1       1       0   .abs_section_1848
+     _PTCSE                                    1849       1       1       0   .abs_section_1849
+     _PTCDS                                    184A       1       1       0   .abs_section_184a
+     _PTDPE                                    184C       1       1       0   .abs_section_184c
+     _PTDSE                                    184D       1       1       0   .abs_section_184d
+     _PTDDS                                    184E       1       1       0   .abs_section_184e
+     _PTEPE                                    1850       1       1       0   .abs_section_1850
+     _PTESE                                    1851       1       1       0   .abs_section_1851
+     _PTEDS                                    1852       1       1       0   .abs_section_1852
+     _PTFPE                                    1854       1       1       0   .abs_section_1854
+     _PTFSE                                    1855       1       1       0   .abs_section_1855
+     _PTFDS                                    1856       1       1       0   .abs_section_1856
+     _PTGPE                                    1858       1       1       0   .abs_section_1858
+     _PTGSE                                    1859       1       1       0   .abs_section_1859
+     _PTGDS                                    185A       1       1       0   .abs_section_185a
+     _ADCR                                       12       2       2       1   .abs_section_12
+     _ADCCV                                      14       2       2       0   .abs_section_14
+     _TPM1CNT                                    21       2       2       1   .abs_section_21
+     _TPM1MOD                                    23       2       2       0   .abs_section_23
+     _TPM1C0V                                    26       2       2       1   .abs_section_26
+     _TPM1C1V                                    29       2       2       0   .abs_section_29
+     _TPM1C2V                                    2C       2       2       0   .abs_section_2c
+     _TPM1C3V                                    2F       2       2       0   .abs_section_2f
+     _TPM1C4V                                    32       2       2       0   .abs_section_32
+     _TPM1C5V                                    35       2       2       0   .abs_section_35
+     _SCI1BD                                     38       2       2       1   .abs_section_38
+     _SCI2BD                                     40       2       2       0   .abs_section_40
+     _SPI1D16                                    54       2       2       2   .abs_section_54
+     _SPI1M                                      56       2       2       0   .abs_section_56
+     _TPM2CNT                                    61       2       2       0   .abs_section_61
+     _TPM2MOD                                    63       2       2       0   .abs_section_63
+     _TPM2C0V                                    66       2       2       0   .abs_section_66
+     _TPM2C1V                                    69       2       2       0   .abs_section_69
+     _SPI2D16                                    74       2       2       0   .abs_section_74
+     _SPI2M                                      76       2       2       0   .abs_section_76
+     _SDID                                     1806       2       2       0   .abs_section_1806
+     _DBGCA                                    1810       2       2       0   .abs_section_1810
+     _DBGCB                                    1812       2       2       0   .abs_section_1812
+     _DBGF                                     1814       2       2       0   .abs_section_1814
+MODULE:                 -- util.c.o --
+- PROCEDURES:
+     getbuf4                                   4DF6      64     100       7   .text       
+     getbuf2little                             4E5A      1F      31       3   .text       
+     getbuf2big                                4E79      1F      31       3   .text       
+- VARIABLES:
+MODULE:                 -- dummy_bdm_driver.c.o --
+- PROCEDURES:
+     VPP_ISR                                   4E98       1       1       1   .text       
+- VARIABLES:
+MODULE:                 -- D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\Bootloader.c.o (bootloaderv0_3.lib) --
+- PROCEDURES:
+     ICP_USB_TX_Service                        FC39      35      53       2   Bootloader_ROM
+     ICP_USB_End_Service                       FC6E      44      68       1   Bootloader_ROM
+     ICP_Setup_Handler                         FCB2      CD     205       1   Bootloader_ROM
+     ICP_USB_Wait                              FD7F      14      20       2   Bootloader_ROM
+     ICP_In_Handler                            FD93      27      39       1   Bootloader_ROM
+     ICP_Out_Handler                           FDBA      5D      93       1   Bootloader_ROM
+     Init_USB                                  FE17      44      68       1   Bootloader_ROM
+     Bootloader_Main                           FE5B      39      57       1   Bootloader_ROM
+- VARIABLES:
+     _ICP_VAR                                    B0       1       1      13   .abs_section_b0
+     ICP_USB_State                               B1       1       1       6   .abs_section_b1
+     pDataIN                                     B2       2       2       7   .abs_section_b2
+     pDataBuf                                    B4       2       2       4   .abs_section_b4
+     DataIN_Cnt                                  B6       1       1      10   .abs_section_b6
+     vICPStatus                                  B7       1       1       5   .abs_section_b7
+     vStartAddr                                  B8       2       2       3   .abs_section_b8
+     vByteNumber                                 BA       1       1       3   .abs_section_ba
+     check_sum                                   BB       2       2       7   .abs_section_bb
+     ICP_BDT                                   1860       6       6      20   .abs_section_1860
+     ICP_IN_Data                               1880       1       1       1   .abs_section_1880
+     ICP_Setup                                 1890       8       8      14   .abs_section_1890
+MODULE:                 -- D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\ICP_Flash.c.o (bootloaderv0_3.lib) --
+- PROCEDURES:
+     Flash_Program                             FE94      31      49       1   Bootloader_ROM
+     Flash_Verification                        FEC5      42      66       1   Bootloader_ROM
+     Flash_Erase                               FF07      11      17       1   Bootloader_ROM
+     FLASHPGM_Copy                             FF18      2D      45       1   Bootloader_ROM
+- VARIABLES:
+     FLASHPGM                                   32D      3B      59       7   .common     
+MODULE:                 -- D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\ICP_Desc.c.o (bootloaderv0_3.lib) --
+- PROCEDURES:
+- VARIABLES:
+     ICP_DeviceDesc                            FF45      12      18       1   Bootloader_ROM
+     ICP_ConfigDesc                            FF57      19      25       1   Bootloader_ROM
+     ICP_StringDesc                            FF70       2       2       1   Bootloader_ROM
+     FLASHPGM_ROM                              FF72      3B      59       1   Bootloader_ROM
+MODULE:                 -- board_id.c.o --
+- PROCEDURES:
+     read_board_id                             4E99       B      11       1   .text       
+     read_osbdm_id                             4EA4       5       5       1   .text       
+- VARIABLES:
+     board_id                                   134       1       1       2   .bss        
+     osbdm_id                                   135       1       1       2   .bss        
+     bid1                                       136       1       1       1   .bss        
+     bid0                                       137       1       1       1   .bss        
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  RTSHC08.C.o (ansiis.lib)                     0    684      0
+  Start08.c.o                                  0    132      0
+  bdm_cf.c.o                                  38   8182      2
+  serial_io.c.o                              263    276      0
+  cmd_processing.c.o                          14   1468      0
+  MCU.c.o                                      2    211      0
+  USB_User_API.c.o                           384    398      0
+  timer.c.o                                    0    203      0
+  main.c.o                                     0    130     64
+  Usb_Descriptor.c.o                          34      0    245
+  Usb_Drv.c.o                                 54    457      0
+  Usb_Ep0_Handler.c.o                          8   1113      0
+  mc9s08jm60.c.o                             172      0      0
+  util.c.o                                     0    162      0
+  dummy_bdm_driver.c.o                         0      1      0
+  D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\Bootloader.c.o (bootloaderv0_3.lib)    28    603      0
+  D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\ICP_Flash.c.o (bootloaderv0_3.lib)    59    177      0
+  D:\Profiles\Freescale\JM60 samples\boot loader\boot loader win-usb_02\JM60_Bootloader-winusblib\JM60_Bootloader-winusb_02_Data\Library\ObjectCode\ICP_Desc.c.o (bootloaderv0_3.lib)     0    104      0
+  board_id.c.o                                 4     16      0
+  other                                      512     20     36
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  _PUSH_ARGS_L _ENTER_UNARY_L _ENTER_BINARY_L _ENTER_BINARY_L_RC _IDIVMOD 
+  _LADD_k_is_k_plus_j _LSUB_k_is_k_minus_j _LAND_k_is_k_and_j _LOR_k_is_k_or_j 
+  _LCMP_k_rel_j _IDIVU_STAR08 _LADD _LSUB_RC _LAND_RC _LOR _LOR_RC _LLSL 
+  _LCMP_RC _COPY _POP32 _SEXT16_32 _Jump_Table_Addr _Jump_Table_Offset 
+  _Jump_Table_Header_Offset _Search_Table_8_Addr _PUSH_CC _POP_CC t_init 
+  t_hard_reset t_power_reset t_debug_init t_serial_init t_reset t_txrx bdmcf_rx 
+  bdmcf_tx_msg bdmcf_tx_cmdaddr bdmcf_tx_32 t_write_ad t_read_ad t_write_creg 
+  t_read_creg t_write_dreg t_read_dreg bdmcf_transmit4 cf_write_or_fill_mem 
+  t_write_mem t_read_mem t_fill_mem bdmcf_pst_status t_stat t_get_ver t_halt 
+  t_go t_step bdm_wbdreg bdm_rbdreg t_assert_ta t_resync cf_reset_nosync 
+  jdly_loop t_unsecure jtag_init jtag_transition_shift jtag_transition_reset 
+  jtag_write jtag_read t_flash_power t_get_clock delay_492ns t_swap17 
+  cf_do_dsack t_xchange outp cfinp t_special_feature t_flash_prog t_set_clock 
+  t_config SCI_Init SCI_Close SCI_save_and_disable_interrupt_settings 
+  SCI_restore_interrupt_settings SCI_Transmit SCI_SendBuffer 
+  SCI_get_pending_chars_during_an_interrupt SCI_ReceiveISR SCI_OverrunISR 
+  SCI_GetOverflowStatus SCI_CharReady SCI_GetChar get_mem_header 
+  debug_command_send_return serial_command_send_return debug_command_exec 
+  serial_command_exec serial_send_data_if_pending Mcu_Init MCG_Init bdm_vsw_en 
+  bdm_vtrg_en tPower_Good CheckTargetPower Endpoint_Init EndPoint_IN 
+  EndPoint_OUT wait_ms dly dly_10us main Dummy_ISR Initialize_USBModule 
+  Check_USBBus_Status USB_Suspend USB_WakeFrom_Suspend USB_Remote_Wakeup 
+  USB_SOF_Handler USB_Stall_Handler USB_Error_Handler USB_Bus_Reset_Handler 
+  USB_Buf_Rdy Clear_Mem USB_ISR IRQ_ISR USB_WakeUp USB_Transaction_Handler 
+  USB_CtrlTrf_Out_Handler USB_CtrlTrf_RxData USB_CtrlTrf_In_Handler 
+  USB_CtrlTrf_TxData USB_CtrlTrf_SetupStage_Processing 
+  USB_CtrlEP_SetupStage_Complete USB_Prepare_Next_Trf USB_StdReq_Handler 
+  USB_StdGetDsc_Handler USB_StdSetCfg_Handler USB_StdGetStatus_Handler 
+  USB_StdFeatureReq_Handler getbuf4 getbuf2little getbuf2big VPP_ISR 
+  read_board_id read_osbdm_id 
+SECTION: ".data"
+  OSSerialNum Str_Des Cfg_Des 
+SECTION: ".bss"
+  eStatus rxBuff sci_rx_sptr sci_rx_eptr sci_virtual_serial_port_is_enabled 
+  delay_count.1 board_id osbdm_id bid1 bid0 
+SECTION: ".init"
+  loadByte Init _Startup 
+SECTION: ".rodata"
+  TARGET_TYPE FIRMWARE_TYPE Device_Dsc_No_Serial_Number 
+  Device_Dsc_With_Serial_Number Cfg_01 sd000 sd001 sd002 sd003 
+SECTION: "Bootloader_ROM"
+  _Entry bootloader_dly_20us ICP_USB_TX_Service ICP_USB_End_Service 
+  ICP_Setup_Handler ICP_USB_Wait ICP_In_Handler ICP_Out_Handler Init_USB 
+  Bootloader_Main Flash_Program Flash_Verification Flash_Erase FLASHPGM_Copy 
+  ICP_DeviceDesc ICP_ConfigDesc ICP_StringDesc FLASHPGM_ROM 
+SECTION: ".common"
+  mod sStatus rBuf hold_sendword hold_block_length hold_sendaddress 
+  hold_senddata addrH addrL sci_rx_buf sci_rx_overflow_occured 
+  sci_remember_SCI1C2_REI temp_sci_stat temp_sci_data tCable_Status uCmd uType 
+  uAddr uWidth uLen debug_cmd_pending serial_cmd_pending FP_Stat VPP_Stat 
+  EP1_Buffer EP2_Buffer EP3_Buffer EP4_Buffer Usb_Device_State Usb_Stat 
+  Usb_Active_Cfg Usb_Alt_Intf Ctrl_Trf_State Ctrl_Trf_Session_Owner pSrc pObj 
+  Transfer_Cnt FLASHPGM 
+SECTION: ".abs_section_18a0"
+  EP1_BDT_Buffer 
+SECTION: ".abs_section_18e0"
+  EP2_BDT_Buffer 
+SECTION: ".abs_section_1920"
+  EP3_BDT_Buffer 
+SECTION: ".abs_section_1940"
+  EP4_BDT_Buffer 
+SECTION: ".abs_section_ffbf"
+  NVOPT_INIT 
+SECTION: ".abs_section_ffbd"
+  NVPROT_INIT 
+SECTION: ".abs_section_fabc"
+  _UserEntry 
+SECTION: ".abs_section_fbc4"
+  _Usr_Vector 
+SECTION: ".abs_section_fffa"
+  _Serial3 
+SECTION: ".abs_section_fffb"
+  _Serial2 
+SECTION: ".abs_section_fffc"
+  _Serial1 
+SECTION: ".abs_section_fffd"
+  _Serial0 
+SECTION: ".abs_section_1860"
+  ICP_BDT Bdtmap 
+SECTION: ".abs_section_1880"
+  ICP_IN_Data CtrlTrf_Data 
+SECTION: ".abs_section_1890"
+  ICP_Setup Setup_Pkt 
+SECTION: ".abs_section_0"
+  _PTAD 
+SECTION: ".abs_section_1"
+  _PTADD 
+SECTION: ".abs_section_2"
+  _PTBD 
+SECTION: ".abs_section_3"
+  _PTBDD 
+SECTION: ".abs_section_4"
+  _PTCD 
+SECTION: ".abs_section_5"
+  _PTCDD 
+SECTION: ".abs_section_6"
+  _PTDD 
+SECTION: ".abs_section_7"
+  _PTDDD 
+SECTION: ".abs_section_8"
+  _PTED 
+SECTION: ".abs_section_9"
+  _PTEDD 
+SECTION: ".abs_section_a"
+  _PTFD 
+SECTION: ".abs_section_b"
+  _PTFDD 
+SECTION: ".abs_section_c"
+  _PTGD 
+SECTION: ".abs_section_d"
+  _PTGDD 
+SECTION: ".abs_section_e"
+  _ACMPSC 
+SECTION: ".abs_section_10"
+  _ADCSC1 
+SECTION: ".abs_section_11"
+  _ADCSC2 
+SECTION: ".abs_section_16"
+  _ADCCFG 
+SECTION: ".abs_section_17"
+  _APCTL1 
+SECTION: ".abs_section_18"
+  _APCTL2 
+SECTION: ".abs_section_1b"
+  _IRQSC 
+SECTION: ".abs_section_1c"
+  _KBISC 
+SECTION: ".abs_section_1d"
+  _KBIPE 
+SECTION: ".abs_section_1e"
+  _KBIES 
+SECTION: ".abs_section_20"
+  _TPM1SC 
+SECTION: ".abs_section_25"
+  _TPM1C0SC 
+SECTION: ".abs_section_28"
+  _TPM1C1SC 
+SECTION: ".abs_section_2b"
+  _TPM1C2SC 
+SECTION: ".abs_section_2e"
+  _TPM1C3SC 
+SECTION: ".abs_section_31"
+  _TPM1C4SC 
+SECTION: ".abs_section_34"
+  _TPM1C5SC 
+SECTION: ".abs_section_3a"
+  _SCI1C1 
+SECTION: ".abs_section_3b"
+  _SCI1C2 
+SECTION: ".abs_section_3c"
+  _SCI1S1 
+SECTION: ".abs_section_3d"
+  _SCI1S2 
+SECTION: ".abs_section_3e"
+  _SCI1C3 
+SECTION: ".abs_section_3f"
+  _SCI1D 
+SECTION: ".abs_section_42"
+  _SCI2C1 
+SECTION: ".abs_section_43"
+  _SCI2C2 
+SECTION: ".abs_section_44"
+  _SCI2S1 
+SECTION: ".abs_section_45"
+  _SCI2S2 
+SECTION: ".abs_section_46"
+  _SCI2C3 
+SECTION: ".abs_section_47"
+  _SCI2D 
+SECTION: ".abs_section_48"
+  _MCGC1 
+SECTION: ".abs_section_49"
+  _MCGC2 
+SECTION: ".abs_section_4a"
+  _MCGTRM 
+SECTION: ".abs_section_4b"
+  _MCGSC 
+SECTION: ".abs_section_4c"
+  _MCGC3 
+SECTION: ".abs_section_50"
+  _SPI1C1 
+SECTION: ".abs_section_51"
+  _SPI1C2 
+SECTION: ".abs_section_52"
+  _SPI1BR 
+SECTION: ".abs_section_53"
+  _SPI1S 
+SECTION: ".abs_section_58"
+  _IICA 
+SECTION: ".abs_section_59"
+  _IICF 
+SECTION: ".abs_section_5a"
+  _IICC1 
+SECTION: ".abs_section_5b"
+  _IICS 
+SECTION: ".abs_section_5c"
+  _IICD 
+SECTION: ".abs_section_5d"
+  _IICC2 
+SECTION: ".abs_section_60"
+  _TPM2SC 
+SECTION: ".abs_section_65"
+  _TPM2C0SC 
+SECTION: ".abs_section_68"
+  _TPM2C1SC 
+SECTION: ".abs_section_6c"
+  _RTCSC 
+SECTION: ".abs_section_6d"
+  _RTCCNT 
+SECTION: ".abs_section_6e"
+  _RTCMOD 
+SECTION: ".abs_section_70"
+  _SPI2C1 
+SECTION: ".abs_section_71"
+  _SPI2C2 
+SECTION: ".abs_section_72"
+  _SPI2BR 
+SECTION: ".abs_section_73"
+  _SPI2S 
+SECTION: ".abs_section_80"
+  _USBCTL0 
+SECTION: ".abs_section_88"
+  _PERID 
+SECTION: ".abs_section_89"
+  _IDCOMP 
+SECTION: ".abs_section_8a"
+  _REV 
+SECTION: ".abs_section_90"
+  _INTSTAT 
+SECTION: ".abs_section_91"
+  _INTENB 
+SECTION: ".abs_section_92"
+  _ERRSTAT 
+SECTION: ".abs_section_93"
+  _ERRENB 
+SECTION: ".abs_section_94"
+  _STAT 
+SECTION: ".abs_section_95"
+  _CTL 
+SECTION: ".abs_section_96"
+  _ADDR 
+SECTION: ".abs_section_97"
+  _FRMNUML 
+SECTION: ".abs_section_98"
+  _FRMNUMH 
+SECTION: ".abs_section_9d"
+  _EPCTL0 
+SECTION: ".abs_section_9e"
+  _EPCTL1 
+SECTION: ".abs_section_9f"
+  _EPCTL2 
+SECTION: ".abs_section_a0"
+  _EPCTL3 
+SECTION: ".abs_section_a1"
+  _EPCTL4 
+SECTION: ".abs_section_a2"
+  _EPCTL5 
+SECTION: ".abs_section_a3"
+  _EPCTL6 
+SECTION: ".abs_section_1800"
+  _SRS 
+SECTION: ".abs_section_1801"
+  _SBDFR 
+SECTION: ".abs_section_1802"
+  _SOPT1 
+SECTION: ".abs_section_1803"
+  _SOPT2 
+SECTION: ".abs_section_1809"
+  _SPMSC1 
+SECTION: ".abs_section_180a"
+  _SPMSC2 
+SECTION: ".abs_section_1816"
+  _DBGC 
+SECTION: ".abs_section_1817"
+  _DBGT 
+SECTION: ".abs_section_1818"
+  _DBGS 
+SECTION: ".abs_section_1820"
+  _FCDIV 
+SECTION: ".abs_section_1821"
+  _FOPT 
+SECTION: ".abs_section_1823"
+  _FCNFG 
+SECTION: ".abs_section_1824"
+  _FPROT 
+SECTION: ".abs_section_1825"
+  _FSTAT 
+SECTION: ".abs_section_1826"
+  _FCMD 
+SECTION: ".abs_section_1840"
+  _PTAPE 
+SECTION: ".abs_section_1841"
+  _PTASE 
+SECTION: ".abs_section_1842"
+  _PTADS 
+SECTION: ".abs_section_1844"
+  _PTBPE 
+SECTION: ".abs_section_1845"
+  _PTBSE 
+SECTION: ".abs_section_1846"
+  _PTBDS 
+SECTION: ".abs_section_1848"
+  _PTCPE 
+SECTION: ".abs_section_1849"
+  _PTCSE 
+SECTION: ".abs_section_184a"
+  _PTCDS 
+SECTION: ".abs_section_184c"
+  _PTDPE 
+SECTION: ".abs_section_184d"
+  _PTDSE 
+SECTION: ".abs_section_184e"
+  _PTDDS 
+SECTION: ".abs_section_1850"
+  _PTEPE 
+SECTION: ".abs_section_1851"
+  _PTESE 
+SECTION: ".abs_section_1852"
+  _PTEDS 
+SECTION: ".abs_section_1854"
+  _PTFPE 
+SECTION: ".abs_section_1855"
+  _PTFSE 
+SECTION: ".abs_section_1856"
+  _PTFDS 
+SECTION: ".abs_section_1858"
+  _PTGPE 
+SECTION: ".abs_section_1859"
+  _PTGSE 
+SECTION: ".abs_section_185a"
+  _PTGDS 
+SECTION: ".abs_section_12"
+  _ADCR 
+SECTION: ".abs_section_14"
+  _ADCCV 
+SECTION: ".abs_section_21"
+  _TPM1CNT 
+SECTION: ".abs_section_23"
+  _TPM1MOD 
+SECTION: ".abs_section_26"
+  _TPM1C0V 
+SECTION: ".abs_section_29"
+  _TPM1C1V 
+SECTION: ".abs_section_2c"
+  _TPM1C2V 
+SECTION: ".abs_section_2f"
+  _TPM1C3V 
+SECTION: ".abs_section_32"
+  _TPM1C4V 
+SECTION: ".abs_section_35"
+  _TPM1C5V 
+SECTION: ".abs_section_38"
+  _SCI1BD 
+SECTION: ".abs_section_40"
+  _SCI2BD 
+SECTION: ".abs_section_54"
+  _SPI1D16 
+SECTION: ".abs_section_56"
+  _SPI1M 
+SECTION: ".abs_section_61"
+  _TPM2CNT 
+SECTION: ".abs_section_63"
+  _TPM2MOD 
+SECTION: ".abs_section_66"
+  _TPM2C0V 
+SECTION: ".abs_section_69"
+  _TPM2C1V 
+SECTION: ".abs_section_74"
+  _SPI2D16 
+SECTION: ".abs_section_76"
+  _SPI2M 
+SECTION: ".abs_section_1806"
+  _SDID 
+SECTION: ".abs_section_1810"
+  _DBGCA 
+SECTION: ".abs_section_1812"
+  _DBGCB 
+SECTION: ".abs_section_1814"
+  _DBGF 
+SECTION: ".abs_section_b0"
+  _ICP_VAR 
+SECTION: ".abs_section_b1"
+  ICP_USB_State 
+SECTION: ".abs_section_b2"
+  pDataIN 
+SECTION: ".abs_section_b4"
+  pDataBuf 
+SECTION: ".abs_section_b6"
+  DataIN_Cnt 
+SECTION: ".abs_section_b7"
+  vICPStatus 
+SECTION: ".abs_section_b8"
+  vStartAddr 
+SECTION: ".abs_section_ba"
+  vByteNumber 
+SECTION: ".abs_section_bb"
+  check_sum 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     _PTAD                                        0       1       1       0   .abs_section_0
+     _PTADD                                       1       1       1       0   .abs_section_1
+     _PTBD                                        2       1       1      28   .abs_section_2
+     _PTBDD                                       3       1       1      11   .abs_section_3
+     _PTCD                                        4       1       1       5   .abs_section_4
+     _PTCDD                                       5       1       1       7   .abs_section_5
+     _PTDD                                        6       1       1       5   .abs_section_6
+     _PTDDD                                       7       1       1       1   .abs_section_7
+     _PTED                                        8       1       1      51   .abs_section_8
+     _PTEDD                                       9       1       1       6   .abs_section_9
+     _PTFD                                        A       1       1       1   .abs_section_a
+     _PTFDD                                       B       1       1       1   .abs_section_b
+     _PTGD                                        C       1       1       2   .abs_section_c
+     _PTGDD                                       D       1       1       2   .abs_section_d
+     _ACMPSC                                      E       1       1       0   .abs_section_e
+     _ADCSC1                                     10       1       1       4   .abs_section_10
+     _ADCSC2                                     11       1       1       1   .abs_section_11
+     _ADCR                                       12       2       2       1   .abs_section_12
+     _ADCCV                                      14       2       2       0   .abs_section_14
+     _ADCCFG                                     16       1       1       1   .abs_section_16
+     _APCTL1                                     17       1       1       1   .abs_section_17
+     _APCTL2                                     18       1       1       1   .abs_section_18
+     _IRQSC                                      1B       1       1       2   .abs_section_1b
+     _KBISC                                      1C       1       1       0   .abs_section_1c
+     _KBIPE                                      1D       1       1       0   .abs_section_1d
+     _KBIES                                      1E       1       1       0   .abs_section_1e
+     _TPM1SC                                     20       1       1       1   .abs_section_20
+     _TPM1CNT                                    21       2       2       1   .abs_section_21
+     _TPM1MOD                                    23       2       2       0   .abs_section_23
+     _TPM1C0SC                                   25       1       1       3   .abs_section_25
+     _TPM1C0V                                    26       2       2       1   .abs_section_26
+     _TPM1C1SC                                   28       1       1       2   .abs_section_28
+     _TPM1C1V                                    29       2       2       0   .abs_section_29
+     _TPM1C2SC                                   2B       1       1       2   .abs_section_2b
+     _TPM1C2V                                    2C       2       2       0   .abs_section_2c
+     _TPM1C3SC                                   2E       1       1       2   .abs_section_2e
+     _TPM1C3V                                    2F       2       2       0   .abs_section_2f
+     _TPM1C4SC                                   31       1       1       0   .abs_section_31
+     _TPM1C4V                                    32       2       2       0   .abs_section_32
+     _TPM1C5SC                                   34       1       1       0   .abs_section_34
+     _TPM1C5V                                    35       2       2       0   .abs_section_35
+     _SCI1BD                                     38       2       2       1   .abs_section_38
+     _SCI1C1                                     3A       1       1       1   .abs_section_3a
+     _SCI1C2                                     3B       1       1       7   .abs_section_3b
+     _SCI1S1                                     3C       1       1       4   .abs_section_3c
+     _SCI1S2                                     3D       1       1       0   .abs_section_3d
+     _SCI1C3                                     3E       1       1       1   .abs_section_3e
+     _SCI1D                                      3F       1       1       3   .abs_section_3f
+     _SCI2BD                                     40       2       2       0   .abs_section_40
+     _SCI2C1                                     42       1       1       0   .abs_section_42
+     _SCI2C2                                     43       1       1       0   .abs_section_43
+     _SCI2S1                                     44       1       1       0   .abs_section_44
+     _SCI2S2                                     45       1       1       0   .abs_section_45
+     _SCI2C3                                     46       1       1       0   .abs_section_46
+     _SCI2D                                      47       1       1       0   .abs_section_47
+     _MCGC1                                      48       1       1       4   .abs_section_48
+     _MCGC2                                      49       1       1       2   .abs_section_49
+     _MCGTRM                                     4A       1       1       0   .abs_section_4a
+     _MCGSC                                      4B       1       1       6   .abs_section_4b
+     _MCGC3                                      4C       1       1       2   .abs_section_4c
+     _SPI1C1                                     50       1       1       4   .abs_section_50
+     _SPI1C2                                     51       1       1       1   .abs_section_51
+     _SPI1BR                                     52       1       1       1   .abs_section_52
+     _SPI1S                                      53       1       1       2   .abs_section_53
+     _SPI1D16                                    54       2       2       2   .abs_section_54
+     _SPI1M                                      56       2       2       0   .abs_section_56
+     _IICA                                       58       1       1       0   .abs_section_58
+     _IICF                                       59       1       1       0   .abs_section_59
+     _IICC1                                      5A       1       1       0   .abs_section_5a
+     _IICS                                       5B       1       1       0   .abs_section_5b
+     _IICD                                       5C       1       1       0   .abs_section_5c
+     _IICC2                                      5D       1       1       0   .abs_section_5d
+     _TPM2SC                                     60       1       1       2   .abs_section_60
+     _TPM2CNT                                    61       2       2       0   .abs_section_61
+     _TPM2MOD                                    63       2       2       0   .abs_section_63
+     _TPM2C0SC                                   65       1       1       1   .abs_section_65
+     _TPM2C0V                                    66       2       2       0   .abs_section_66
+     _TPM2C1SC                                   68       1       1       1   .abs_section_68
+     _TPM2C1V                                    69       2       2       0   .abs_section_69
+     _RTCSC                                      6C       1       1       0   .abs_section_6c
+     _RTCCNT                                     6D       1       1       0   .abs_section_6d
+     _RTCMOD                                     6E       1       1       0   .abs_section_6e
+     _SPI2C1                                     70       1       1       0   .abs_section_70
+     _SPI2C2                                     71       1       1       0   .abs_section_71
+     _SPI2BR                                     72       1       1       0   .abs_section_72
+     _SPI2S                                      73       1       1       0   .abs_section_73
+     _SPI2D16                                    74       2       2       0   .abs_section_74
+     _SPI2M                                      76       2       2       0   .abs_section_76
+     _USBCTL0                                    80       1       1      13   .abs_section_80
+     _PERID                                      88       1       1       0   .abs_section_88
+     _IDCOMP                                     89       1       1       0   .abs_section_89
+     _REV                                        8A       1       1       0   .abs_section_8a
+     _INTSTAT                                    90       1       1      24   .abs_section_90
+     _INTENB                                     91       1       1      13   .abs_section_91
+     _ERRSTAT                                    92       1       1       4   .abs_section_92
+     _ERRENB                                     93       1       1       2   .abs_section_93
+     _STAT                                       94       1       1       4   .abs_section_94
+     _CTL                                        95       1       1      11   .abs_section_95
+     _ADDR                                       96       1       1       5   .abs_section_96
+     _FRMNUML                                    97       1       1       0   .abs_section_97
+     _FRMNUMH                                    98       1       1       0   .abs_section_98
+     _EPCTL0                                     9D       1       1       7   .abs_section_9d
+     _EPCTL1                                     9E       1       1       3   .abs_section_9e
+     _EPCTL2                                     9F       1       1       1   .abs_section_9f
+     _EPCTL3                                     A0       1       1       1   .abs_section_a0
+     _EPCTL4                                     A1       1       1       1   .abs_section_a1
+     _EPCTL5                                     A2       1       1       0   .abs_section_a2
+     _EPCTL6                                     A3       1       1       0   .abs_section_a3
+     _ICP_VAR                                    B0       1       1      13   .abs_section_b0
+     ICP_USB_State                               B1       1       1       6   .abs_section_b1
+     pDataIN                                     B2       2       2       7   .abs_section_b2
+     pDataBuf                                    B4       2       2       4   .abs_section_b4
+     DataIN_Cnt                                  B6       1       1      10   .abs_section_b6
+     vICPStatus                                  B7       1       1       5   .abs_section_b7
+     vStartAddr                                  B8       2       2       3   .abs_section_b8
+     vByteNumber                                 BA       1       1       3   .abs_section_ba
+     check_sum                                   BB       2       2       7   .abs_section_bb
+     OSSerialNum                                100      10      16       2   .data       
+     Str_Des                                    110       A      10       1   .data       
+     Cfg_Des                                    11A       4       4       1   .data       
+     eStatus                                    11E       1       1       3   .bss        
+     rxBuff                                     11F      10      16     112   .bss        
+     sci_rx_sptr                                12F       1       1       8   .bss        
+     sci_rx_eptr                                130       1       1       8   .bss        
+     sci_virtual_serial_port_is_enabled         131       1       1       4   .bss        
+     delay_count.1                              132       2       2       3   .bss        
+     board_id                                   134       1       1       2   .bss        
+     osbdm_id                                   135       1       1       2   .bss        
+     bid1                                       136       1       1       1   .bss        
+     bid0                                       137       1       1       1   .bss        
+     mod                                        138       2       2       3   .common     
+     sStatus                                    13A       1       1       8   .common     
+     rBuf                                       13B       2       2       1   .common     
+     hold_sendword                              13D       2       2      10   .common     
+     hold_block_length                          13F       2       2      14   .common     
+     hold_sendaddress                           141       4       4      11   .common     
+     hold_senddata                              145       4       4      16   .common     
+     addrH                                      149       2       2       5   .common     
+     addrL                                      14B       2       2       5   .common     
+     sci_rx_buf                                 14D     100     256       2   .common     
+     sci_rx_overflow_occured                    24D       1       1       6   .common     
+     sci_remember_SCI1C2_REI                    24E       1       1       3   .common     
+     temp_sci_stat                              24F       1       1       3   .common     
+     temp_sci_data                              250       1       1       2   .common     
+     tCable_Status                              251       1       1       1   .common     
+     uCmd                                       252       1       1       6   .common     
+     uType                                      253       1       1       9   .common     
+     uAddr                                      254       4       4      24   .common     
+     uWidth                                     258       1       1       9   .common     
+     uLen                                       259       4       4       5   .common     
+     debug_cmd_pending                          25D       1       1       4   .common     
+     serial_cmd_pending                         25E       1       1       4   .common     
+     FP_Stat                                    25F       1       1       1   .common     
+     VPP_Stat                                   260       1       1       1   .common     
+     EP1_Buffer                                 261      40      64      22   .common     
+     EP2_Buffer                                 2A1      40      64      13   .common     
+     EP3_Buffer                                 2E1      20      32       9   .common     
+     EP4_Buffer                                 301      20      32       5   .common     
+     Usb_Device_State                           321       1       1      15   .common     
+     Usb_Stat                                   322       1       1       8   .common     
+     Usb_Active_Cfg                             323       1       1       4   .common     
+     Usb_Alt_Intf                               324       1       1       4   .common     
+     Ctrl_Trf_State                             325       1       1       7   .common     
+     Ctrl_Trf_Session_Owner                     326       1       1      10   .common     
+     pSrc                                       327       2       2       9   .common     
+     pObj                                       329       2       2       5   .common     
+     Transfer_Cnt                               32B       2       2      18   .common     
+     FLASHPGM                                   32D      3B      59       7   .common     
+     _SRS                                      1800       1       1       2   .abs_section_1800
+     _SBDFR                                    1801       1       1       0   .abs_section_1801
+     _SOPT1                                    1802       1       1       2   .abs_section_1802
+     _SOPT2                                    1803       1       1       0   .abs_section_1803
+     _SDID                                     1806       2       2       0   .abs_section_1806
+     _SPMSC1                                   1809       1       1       1   .abs_section_1809
+     _SPMSC2                                   180A       1       1       0   .abs_section_180a
+     _DBGCA                                    1810       2       2       0   .abs_section_1810
+     _DBGCB                                    1812       2       2       0   .abs_section_1812
+     _DBGF                                     1814       2       2       0   .abs_section_1814
+     _DBGC                                     1816       1       1       0   .abs_section_1816
+     _DBGT                                     1817       1       1       0   .abs_section_1817
+     _DBGS                                     1818       1       1       0   .abs_section_1818
+     _FCDIV                                    1820       1       1       1   .abs_section_1820
+     _FOPT                                     1821       1       1       0   .abs_section_1821
+     _FCNFG                                    1823       1       1       0   .abs_section_1823
+     _FPROT                                    1824       1       1       0   .abs_section_1824
+     _FSTAT                                    1825       1       1       0   .abs_section_1825
+     _FCMD                                     1826       1       1       0   .abs_section_1826
+     _PTAPE                                    1840       1       1       0   .abs_section_1840
+     _PTASE                                    1841       1       1       0   .abs_section_1841
+     _PTADS                                    1842       1       1       0   .abs_section_1842
+     _PTBPE                                    1844       1       1       0   .abs_section_1844
+     _PTBSE                                    1845       1       1       0   .abs_section_1845
+     _PTBDS                                    1846       1       1       0   .abs_section_1846
+     _PTCPE                                    1848       1       1       0   .abs_section_1848
+     _PTCSE                                    1849       1       1       0   .abs_section_1849
+     _PTCDS                                    184A       1       1       0   .abs_section_184a
+     _PTDPE                                    184C       1       1       0   .abs_section_184c
+     _PTDSE                                    184D       1       1       0   .abs_section_184d
+     _PTDDS                                    184E       1       1       0   .abs_section_184e
+     _PTEPE                                    1850       1       1       0   .abs_section_1850
+     _PTESE                                    1851       1       1       0   .abs_section_1851
+     _PTEDS                                    1852       1       1       0   .abs_section_1852
+     _PTFPE                                    1854       1       1       0   .abs_section_1854
+     _PTFSE                                    1855       1       1       0   .abs_section_1855
+     _PTFDS                                    1856       1       1       0   .abs_section_1856
+     _PTGPE                                    1858       1       1       0   .abs_section_1858
+     _PTGSE                                    1859       1       1       0   .abs_section_1859
+     _PTGDS                                    185A       1       1       0   .abs_section_185a
+     ICP_BDT                                   1860       6       6      20   .abs_section_1860
+     Bdtmap                                    1860      20      32      57   .abs_section_1860
+     ICP_IN_Data                               1880       1       1       1   .abs_section_1880
+     CtrlTrf_Data                              1880       8       8       7   .abs_section_1880
+     ICP_Setup                                 1890       8       8      14   .abs_section_1890
+     Setup_Pkt                                 1890       8       8      23   .abs_section_1890
+     EP1_BDT_Buffer                            18A0      40      64       2   .abs_section_18a0
+     EP2_BDT_Buffer                            18E0      40      64       2   .abs_section_18e0
+     EP3_BDT_Buffer                            1920      20      32       2   .abs_section_1920
+     EP4_BDT_Buffer                            1940      20      32       2   .abs_section_1940
+     loadByte                                  1960       E      14       5   .init       
+     Init                                      196E      6D     109       1   .init       
+     _Startup                                  19DB       9       9       1   .init       
+     TARGET_TYPE                               19F6       1       1       1   .rodata     
+     FIRMWARE_TYPE                             19F7       1       1       1   .rodata     
+     Device_Dsc_No_Serial_Number               19F8      12      18       1   .rodata     
+     Device_Dsc_With_Serial_Number             1A0A      12      18       1   .rodata     
+     Cfg_01                                    1A1C      37      55       2   .rodata     
+     sd000                                     1A53       4       4       1   .rodata     
+     sd001                                     1A57      38      56       1   .rodata     
+     sd002                                     1A8F      26      38       1   .rodata     
+     sd003                                     1AB5      38      56       1   .rodata     
+     _PUSH_ARGS_L                              1AED      20      32       2   .text       
+     _ENTER_UNARY_L                            1B0D      29      41       1   .text       
+     _ENTER_BINARY_L                           1B36      16      22       2   .text       
+     _ENTER_BINARY_L_RC                        1B4C      19      25       4   .text       
+     _IDIVMOD                                  1B65      69     105       1   .text       
+     _LADD_k_is_k_plus_j                       1BCE      1F      31       1   .text       
+     _LSUB_k_is_k_minus_j                      1BED      1F      31       1   .text       
+     _LAND_k_is_k_and_j                        1C0C      1F      31       1   .text       
+     _LOR_k_is_k_or_j                          1C2B      1F      31       2   .text       
+     _LCMP_k_rel_j                             1C4A      1F      31       1   .text       
+     _IDIVU_STAR08                             1C69       D      13       1   .text       
+     _LADD                                     1C76       6       6       6   .text       
+     _LSUB_RC                                  1C7C       6       6       2   .text       
+     _LAND_RC                                  1C82       6       6       3   .text       
+     _LOR                                      1C88       6       6       6   .text       
+     _LOR_RC                                   1C8E       6       6       4   .text       
+     _LLSL                                     1C94      16      22      19   .text       
+     _LCMP_RC                                  1CAA       6       6       5   .text       
+     _COPY                                     1CB0      30      48       7   .text       
+     _POP32                                    1CE0      1A      26      21   .text       
+     _SEXT16_32                                1CFA       D      13       1   .text       
+     _Jump_Table_Addr                          1D07      16      22       3   .text       
+     _Jump_Table_Offset                        1D1D      19      25       5   .text       
+     _Jump_Table_Header_Offset                 1D36      24      36       9   .text       
+     _Search_Table_8_Addr                      1D5A      21      33       1   .text       
+     _PUSH_CC                                  1D7B       F      15       1   .text       
+     _POP_CC                                   1D8A       F      15       1   .text       
+     t_init                                    1D99      10      16       2   .text       
+     t_hard_reset                              1DA9      21      33       1   .text       
+     t_power_reset                             1DCA      1A      26       1   .text       
+     t_debug_init                              1DE4       1       1       1   .text       
+     t_serial_init                             1DE5       6       6       1   .text       
+     t_reset                                   1DEB      2B      43       1   .text       
+     t_txrx                                    1E16      55      85      15   .text       
+     bdmcf_rx                                  1E6B      A8     168      19   .text       
+     bdmcf_tx_msg                              1F13       7       7      13   .text       
+     bdmcf_tx_cmdaddr                          1F1A       C      12       8   .text       
+     bdmcf_tx_32                               1F26      1C      28       3   .text       
+     t_write_ad                                1F42      65     101       1   .text       
+     t_read_ad                                 1FA7      7E     126       1   .text       
+     t_write_creg                              2025      39      57       3   .text       
+     t_read_creg                               205E      47      71       3   .text       
+     t_write_dreg                              20A5      37      55       1   .text       
+     t_read_dreg                               20DC      12      18       1   .text       
+     bdmcf_transmit4                           20EE      2E      46       1   .text       
+     cf_write_or_fill_mem                      211C     121     289       4   .text       
+     t_write_mem                               223D      24      36       2   .text       
+     t_read_mem                                2261     15A     346      11   .text       
+     t_fill_mem                                23BB      23      35       1   .text       
+     bdmcf_pst_status                          23DE       7       7       2   .text       
+     t_stat                                    23E5      2D      45       1   .text       
+     t_get_ver                                 2412      29      41       1   .text       
+     t_halt                                    243B      1F      31       1   .text       
+     t_go                                      245A      88     136       1   .text       
+     t_step                                    24E2      88     136       1   .text       
+     bdm_wbdreg                                256A      3D      61       2   .text       
+     bdm_rbdreg                                25A7      76     118       4   .text       
+     t_assert_ta                               261D      1E      30       1   .text       
+     t_resync                                  263B      1B      27       1   .text       
+     cf_reset_nosync                           2656      12      18       1   .text       
+     jdly_loop                                 2668      1A      26       2   .text       
+     t_unsecure                                2682      B2     178       2   .text       
+     jtag_init                                 2734      51      81       1   .text       
+     jtag_transition_shift                     2785      32      50       4   .text       
+     jtag_transition_reset                     27B7      1C      28       1   .text       
+     jtag_write                                27D3      84     132       3   .text       
+     jtag_read                                 2857      A4     164       1   .text       
+     t_flash_power                             28FB       3       3       2   .text       
+     t_get_clock                               28FE       8       8       1   .text       
+     delay_492ns                               2906      29      41       8   .text       
+     t_swap17                                  292F      D3     211       6   .text       
+     cf_do_dsack                               2A02      12      18      23   .text       
+     t_xchange                                 2A14     33E     830      35   .text       
+     outp                                      2D52      33      51       2   .text       
+     cfinp                                     2D85      26      38       2   .text       
+     t_special_feature                         2DAB     FDD    4061     279   .text       
+     t_flash_prog                              3D88       3       3       1   .text       
+     t_set_clock                               3D8B       1       1       1   .text       
+     t_config                                  3D8C       3       3       1   .text       
+     SCI_Init                                  3D8F      26      38       1   .text       
+     SCI_Close                                 3DB5      10      16       1   .text       
+     SCI_save_and_disable_interrupt_settings       3DC5       D      13       1   .text       
+     SCI_restore_interrupt_settings            3DD2       D      13       1   .text       
+     SCI_Transmit                              3DDF       D      13       1   .text       
+     SCI_SendBuffer                            3DEC      20      32       1   .text       
+     SCI_get_pending_chars_during_an_interrupt       3E0C      46      70       6   .text       
+     SCI_ReceiveISR                            3E52       5       5       1   .text       
+     SCI_OverrunISR                            3E57      10      16       1   .text       
+     SCI_GetOverflowStatus                     3E67       8       8       1   .text       
+     SCI_CharReady                             3E6F       D      13       2   .text       
+     SCI_GetChar                               3E7C      27      39       1   .text       
+     get_mem_header                            3EA3      33      51       1   .text       
+     debug_command_send_return                 3ED6       B      11       1   .text       
+     serial_command_send_return                3EE1       B      11       2   .text       
+     debug_command_exec                        3EEC     4D6    1238      68   .text       
+     serial_command_exec                       43C2      53      83       1   .text       
+     serial_send_data_if_pending               4415      4A      74       1   .text       
+     Mcu_Init                                  445F      6E     110       1   .text       
+     MCG_Init                                  44CD      22      34       1   .text       
+     bdm_vsw_en                                44EF       D      13       1   .text       
+     bdm_vtrg_en                               44FC      1A      26       3   .text       
+     tPower_Good                               4516      11      17       3   .text       
+     CheckTargetPower                          4527       B      11       1   .text       
+     Endpoint_Init                             4532      39      57       1   .text       
+     EndPoint_IN                               456B      89     137       2   .text       
+     EndPoint_OUT                              45F4      CC     204       2   .text       
+     wait_ms                                   46C0      7D     125      11   .text       
+     dly                                       473D      1C      28      10   .text       
+     dly_10us                                  4759      32      50       1   .text       
+     main                                      478B      48      72       1   .text       
+     Dummy_ISR                                 47D3       1       1      24   .text       
+     Initialize_USBModule                      47D4      32      50       1   .text       
+     Check_USBBus_Status                       4806      2F      47       2   .text       
+     USB_Suspend                               4835      1C      28       1   .text       
+     USB_WakeFrom_Suspend                      4851       7       7       2   .text       
+     USB_Remote_Wakeup                         4858      24      36       1   .text       
+     USB_SOF_Handler                           487C       3       3       1   .text       
+     USB_Stall_Handler                         487F      11      17       1   .text       
+     USB_Error_Handler                         4890      12      18       1   .text       
+     USB_Bus_Reset_Handler                     48A2      35      53       1   .text       
+     USB_Buf_Rdy                               48D7       B      11       2   .text       
+     Clear_Mem                                 48E2      1D      29       3   .text       
+     USB_ISR                                   48FF      5E      94       1   .text       
+     IRQ_ISR                                   495D       5       5       1   .text       
+     USB_WakeUp                                4962      3B      59       1   .text       
+     USB_Transaction_Handler                   499D      5B      91       1   .text       
+     USB_CtrlTrf_Out_Handler                   49F8       D      13       1   .text       
+     USB_CtrlTrf_RxData                        4A05      59      89       1   .text       
+     USB_CtrlTrf_In_Handler                    4A5E      24      36       1   .text       
+     USB_CtrlTrf_TxData                        4A82      6A     106       2   .text       
+     USB_CtrlTrf_SetupStage_Processing         4AEC      11      17       1   .text       
+     USB_CtrlEP_SetupStage_Complete            4AFD      76     118       1   .text       
+     USB_Prepare_Next_Trf                      4B73      17      23       5   .text       
+     USB_StdReq_Handler                        4B8A      63      99       1   .text       
+     USB_StdGetDsc_Handler                     4BED      AE     174       1   .text       
+     USB_StdSetCfg_Handler                     4C9B      2C      44       1   .text       
+     USB_StdGetStatus_Handler                  4CC7      6C     108       1   .text       
+     USB_StdFeatureReq_Handler                 4D33      C3     195       1   .text       
+     getbuf4                                   4DF6      64     100       7   .text       
+     getbuf2little                             4E5A      1F      31       3   .text       
+     getbuf2big                                4E79      1F      31       3   .text       
+     VPP_ISR                                   4E98       1       1       1   .text       
+     read_board_id                             4E99       B      11       1   .text       
+     read_osbdm_id                             4EA4       5       5       1   .text       
+     _UserEntry                                FABC       4       4       1   .abs_section_fabc
+     _Usr_Vector                               FBC4      3A      58       0   .abs_section_fbc4
+     _Entry                                    FC00      31      49       0   Bootloader_ROM
+     bootloader_dly_20us                       FC31       8       8       2   Bootloader_ROM
+     ICP_USB_TX_Service                        FC39      35      53       2   Bootloader_ROM
+     ICP_USB_End_Service                       FC6E      44      68       1   Bootloader_ROM
+     ICP_Setup_Handler                         FCB2      CD     205       1   Bootloader_ROM
+     ICP_USB_Wait                              FD7F      14      20       2   Bootloader_ROM
+     ICP_In_Handler                            FD93      27      39       1   Bootloader_ROM
+     ICP_Out_Handler                           FDBA      5D      93       1   Bootloader_ROM
+     Init_USB                                  FE17      44      68       1   Bootloader_ROM
+     Bootloader_Main                           FE5B      39      57       1   Bootloader_ROM
+     Flash_Program                             FE94      31      49       1   Bootloader_ROM
+     Flash_Verification                        FEC5      42      66       1   Bootloader_ROM
+     Flash_Erase                               FF07      11      17       1   Bootloader_ROM
+     FLASHPGM_Copy                             FF18      2D      45       1   Bootloader_ROM
+     ICP_DeviceDesc                            FF45      12      18       1   Bootloader_ROM
+     ICP_ConfigDesc                            FF57      19      25       1   Bootloader_ROM
+     ICP_StringDesc                            FF70       2       2       1   Bootloader_ROM
+     FLASHPGM_ROM                              FF72      3B      59       1   Bootloader_ROM
+     NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
+     NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
+     _Serial3                                  FFFA       1       1       3   .abs_section_fffa
+     _Serial2                                  FFFB       1       1       3   .abs_section_fffb
+     _Serial1                                  FFFC       1       1       3   .abs_section_fffc
+     _Serial0                                  FFFD       1       1       3   .abs_section_fffd
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+NOT USED PROCEDURES
+RTSHC08.C.o (ansiis.lib):
+  _PUSH_ARGS_D _ENTER_UNARY_L64 _ENTER_UNARY_L64_4 _ENTER_BINARY_L_LC 
+  _ENTER_BINARY_L64 _ENTER_BINARY_L64_LC _ENTER_BINARY_L64_RC _SPLITSIGN 
+  _k_is_k_plus_j_l _k_is_k_plus_j_i _LXOR_k_is_k_xor_j _LMUL_k_is_k_mul_j 
+  _LDIVMOD _NEG_L_HX _ABS_L_HX _SPLITSIGN_L _LMODU_k_is_k_mod_j 
+  _LDIVU_k_is_k_div_j _LMODS_k_is_k_mod_j _LDIVS_k_is_k_div_j _CMP24_k_rel_j 
+  _BMULS _BDIVS _BMODS _IMUL_STAR08 _IDIVS_STAR08 _IMODS_STAR08 _IMODU_STAR08 
+  _IDIVU_8 _IMODU_8 _IASR _ILSR _ILSL _ICMP _LINC _LDEC _LNEG _LNOT _LADD_RC 
+  _LSUB _LSUB_LC _LAND _LXOR _LXOR_RC _LMUL _LMUL_RC _LDIVS _LDIVS_LC _LDIVS_RC 
+  _LDIVU _LDIVU_LC _LDIVU_RC _LMODS _LMODS_LC _LMODS_RC _LMODU _LMODU_LC 
+  _LMODU_RC _LASR _LLSR _LCMP _PUSH_ARGS_24 _ENTER_BINARY_24_RC 
+  _ENTER_BINARY_24 _CMP24 _CMP24_RC _COPY_L _POP64 _STORE32 _STORE64 _SEXT8_32 
+  _CALL_STAR08 _CALL_STAR08_FAR _Jump_Table_Header_Addr _Search_Table_16_Addr 
+  _Search_Table_16_Offset _Search_Table_8_Offset _CONV_FAR_TO_NEAR 
+  _CONV_FAR_TO_LINEAR _CONV_LINEAR_TO_FAR 
+MCU.c.o:
+  Blink_Led t_rsto t_rsti 
+Usb_Drv.c.o:
+  USB_Soft_Detach 
+util.c.o:
+  bigendian4_to_ulong bigendian2_to_ulong littleendian2_to_ulong 
+  ulong_to_bigendian4 ulong_to_littleendian4 ulong_to_bigendian2 
+  ulong_to_littleendian2 
+NOT USED VARIABLES
+RTSHC08.C.o (ansiis.lib):
+  _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
+bdm_cf.c.o:
+  txBuff hold_recvword 
+cmd_processing.c.o:
+  rdata spi_data 
+MCU.c.o:
+  Self_Power Jtag_Mode Target_State 
+USB_User_API.c.o:
+  EP1_OUT_SIZE EP2_OUT_SIZE EP3_OUT_SIZE EP4_OUT_SIZE 
+Usb_Descriptor.c.o:
+  Std_Class_Req_Handler 
+board_id.c.o:
+  adc_conv 
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+------- ROM-ADDRESS: 0x4EA9 ---- SIZE       4 ---
+Filling bytes inserted
+ 001E0100
+------- ROM-ADDRESS: 0x4EAD ---- RAM-ADDRESS: 0x100 ---- SIZE      13 ---
+Name of initialized Object : OSSerialNum
+ 10034F0053 0030003000 300030
+------- ROM-ADDRESS: 0x4EBA ---- SIZE       3 ---
+Filling bytes inserted
+ 000000
+------- ROM-ADDRESS: 0x4EBD ---- RAM-ADDRESS: 0x110 ---- SIZE       9 ---
+Name of initialized Object : Str_Des
+ 1A531A571A 8F1AB501
+------- ROM-ADDRESS: 0x4EC6 ---- SIZE       1 ---
+Filling bytes inserted
+ 00
+------- ROM-ADDRESS: 0x4EC7 ---- RAM-ADDRESS: 0x11A ---- SIZE       4 ---
+Name of initialized Object : Cfg_Des
+ 1A1C1A1C
+------- ROM-ADDRESS: 0x4ECB ---- SIZE       2 ---
+Filling bytes inserted
+ 0000
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+Str_Des                   USES sd000 sd001 sd002 sd003 OSSerialNum 
+Cfg_Des                   USES Cfg_01 
+Init                      USES _startupData loadByte 
+_Startup                  USES __SEG_END_SSTACK Init main 
+_ENTER_BINARY_L           USES _PUSH_ARGS_L 
+_ENTER_BINARY_L_RC        USES _PUSH_ARGS_L 
+_IDIVU_STAR08             USES _IDIVMOD 
+_LADD                     USES _ENTER_BINARY_L _LADD_k_is_k_plus_j 
+_LSUB_RC                  USES _ENTER_BINARY_L_RC _LSUB_k_is_k_minus_j 
+_LAND_RC                  USES _ENTER_BINARY_L_RC _LAND_k_is_k_and_j 
+_LOR                      USES _ENTER_BINARY_L _LOR_k_is_k_or_j 
+_LOR_RC                   USES _ENTER_BINARY_L_RC _LOR_k_is_k_or_j 
+_LLSL                     USES _ENTER_UNARY_L 
+_LCMP_RC                  USES _ENTER_BINARY_L_RC _LCMP_k_rel_j 
+t_init                    USES bdm_vtrg_en _PTED _PTEDD 
+t_hard_reset              USES _PTCD _PTCDD _PTBD wait_ms 
+t_power_reset             USES _PTBD wait_ms bdm_vtrg_en 
+t_serial_init             USES _PTEDD t_init 
+t_reset                   USES _Jump_Table_Header_Offset t_power_reset 
+                                t_hard_reset t_resync 
+t_txrx                    USES sStatus _SPI1C1 mod _PTED dly _PTEDD _SPI1S 
+                                _SPI1D16 
+bdmcf_rx                  USES t_txrx bdmcf_rx eStatus sStatus 
+bdmcf_tx_msg              USES t_txrx rBuf 
+bdmcf_tx_cmdaddr          USES bdmcf_tx_msg addrH addrL 
+bdmcf_tx_32               USES getbuf4 bdmcf_tx_msg 
+t_write_ad                USES _LCMP_RC _LSUB_RC _POP32 bdmcf_tx_msg 
+                                bdmcf_tx_32 bdmcf_rx 
+t_read_ad                 USES _LCMP_RC _LSUB_RC _POP32 bdmcf_tx_msg bdmcf_rx 
+t_write_creg              USES addrH addrL bdmcf_tx_cmdaddr bdmcf_tx_32 
+                                bdmcf_rx 
+t_read_creg               USES addrH addrL bdmcf_tx_cmdaddr bdmcf_rx 
+t_write_dreg              USES bdmcf_tx_msg bdmcf_tx_32 bdmcf_rx 
+t_read_dreg               USES bdm_rbdreg 
+bdmcf_transmit4           USES getbuf2big bdmcf_tx_msg getbuf2little 
+cf_write_or_fill_mem      USES addrH addrL cf_write_or_fill_mem 
+                                bdmcf_tx_cmdaddr bdmcf_rx bdmcf_tx_msg getbuf2big 
+                                bdmcf_transmit4 
+t_write_mem               USES cf_write_or_fill_mem 
+t_read_mem                USES addrH addrL t_read_mem bdmcf_tx_cmdaddr 
+                                bdmcf_rx 
+t_fill_mem                USES cf_write_or_fill_mem 
+bdmcf_pst_status          USES _PTCD 
+t_stat                    USES bdm_rbdreg eStatus bdmcf_pst_status 
+t_get_ver                 USES TARGET_TYPE FIRMWARE_TYPE board_id osbdm_id 
+t_halt                    USES _PTBD wait_ms bdmcf_rx 
+t_go                      USES bdm_rbdreg bdm_wbdreg t_read_creg getbuf4 
+                                t_write_creg sStatus t_txrx 
+t_step                    USES bdm_rbdreg bdm_wbdreg t_read_creg getbuf4 
+                                t_write_creg sStatus t_txrx 
+bdm_wbdreg                USES t_txrx sStatus 
+bdm_rbdreg                USES t_txrx sStatus _LADD _POP32 _COPY 
+t_assert_ta               USES _PTBD _PTBDD dly_10us 
+t_resync                  USES t_txrx sStatus 
+cf_reset_nosync           USES _PTCD _PTCDD wait_ms 
+jdly_loop                 USES dly 
+t_unsecure                USES cf_reset_nosync jtag_init t_unsecure 
+                                jtag_transition_shift jtag_write jtag_read jtag_transition_reset 
+                                jdly_loop 
+jtag_init                 USES _PTED _PTEDD _PTBD _PTBDD wait_ms dly 
+jtag_transition_shift     USES _PTBD _PTED jdly_loop dly 
+jtag_transition_reset     USES _PTBD _PTED dly 
+jtag_write                USES _PTED _PTBD dly 
+jtag_read                 USES _PTED _PTBD dly 
+t_swap17                  USES _PTBD outp t_swap17 delay_492ns _PTED _COPY 
+                                _LAND_RC _POP32 
+cf_do_dsack               USES _PTBD _PTBDD delay_492ns 
+t_xchange                 USES _LOR t_swap17 t_xchange _LCMP_RC _PUSH_CC 
+                                _POP_CC cf_do_dsack _LOR_RC _POP32 _COPY _PTED 
+                                delay_492ns 
+outp                      USES _PTED _PTBD _PTCDD _PTCD _PTBDD 
+cfinp                     USES _PTED bdmcf_pst_status 
+t_special_feature         USES t_special_feature _Jump_Table_Offset 
+                                _Jump_Table_Addr cfinp rxBuff outp hold_senddata t_swap17 
+                                cf_do_dsack _LLSL hold_sendaddress _LOR _LAND_RC _POP32 
+                                t_xchange _LADD hold_block_length hold_sendword 
+                                _SEXT16_32 delay_492ns _IDIVU_STAR08 
+SCI_Init                  USES _SCI1BD _SCI1C1 sci_rx_sptr sci_rx_eptr 
+                                sci_rx_overflow_occured _PTGDD _PTGD _SCI1C2 _SCI1C3 
+                                sci_remember_SCI1C2_REI sci_virtual_serial_port_is_enabled 
+SCI_Close                 USES _SCI1C2 sci_rx_sptr sci_rx_eptr 
+                                sci_rx_overflow_occured sci_virtual_serial_port_is_enabled 
+SCI_save_and_disable_interrupt_settings USES _SCI1C2 sci_remember_SCI1C2_REI 
+SCI_restore_interrupt_settings USES sci_remember_SCI1C2_REI _SCI1C2 
+SCI_Transmit              USES _SCI1S1 _SCI1D 
+SCI_SendBuffer            USES SCI_Transmit 
+SCI_get_pending_chars_during_an_interrupt USES _SCI1S1 temp_sci_stat _SCI1D 
+                                temp_sci_data sci_rx_eptr sci_rx_buf sci_rx_sptr 
+                                sci_rx_overflow_occured 
+SCI_ReceiveISR            USES SCI_get_pending_chars_during_an_interrupt 
+SCI_OverrunISR            USES _SCI1S1 _SCI1D sci_rx_overflow_occured 
+SCI_GetOverflowStatus     USES sci_rx_overflow_occured 
+SCI_CharReady             USES sci_rx_sptr sci_rx_eptr 
+SCI_GetChar               USES SCI_save_and_disable_interrupt_settings 
+                                sci_rx_sptr sci_rx_buf SCI_restore_interrupt_settings 
+get_mem_header            USES uType uAddr getbuf4 uWidth uLen 
+debug_command_send_return USES EP2_Buffer EndPoint_IN 
+serial_command_send_return USES EP4_Buffer EndPoint_IN 
+debug_command_exec        USES EP1_Buffer uCmd debug_command_exec 
+                                _Jump_Table_Addr _Search_Table_8_Addr EP2_Buffer t_stat 
+                                t_get_ver t_init t_reset tCable_Status getbuf2little 
+                                t_assert_ta t_go t_step t_halt getbuf4 t_config 
+                                t_set_clock t_get_clock t_special_feature uLen _LCMP_RC 
+                                uType _Jump_Table_Offset uAddr t_write_ad 
+                                t_write_creg uWidth t_write_dreg t_write_mem t_fill_mem 
+                                t_flash_power t_flash_prog t_read_ad t_read_creg t_read_dreg 
+                                t_read_mem t_unsecure debug_command_send_return _LADD 
+                                _POP32 get_mem_header 
+serial_command_exec       USES EP3_Buffer _Jump_Table_Header_Offset 
+                                serial_command_send_return SCI_Close SCI_SendBuffer SCI_Init 
+                                t_serial_init 
+serial_send_data_if_pending USES sci_virtual_serial_port_is_enabled Bdtmap 
+                                SCI_CharReady SCI_GetChar EP4_Buffer SCI_GetOverflowStatus 
+                                serial_command_send_return 
+Mcu_Init                  USES _SOPT1 _SPMSC1 _PTBD _PTCD _PTDD _PTED _PTFD 
+                                _PTGD _PTBDD _PTCDD _PTDDD _PTEDD _PTFDD _PTGDD 
+                                _TPM1SC _TPM1C0SC _TPM1C1SC _TPM1C2SC _TPM1C3SC 
+                                _TPM2SC _TPM2C0SC _TPM2C1SC _ADCSC1 _ADCSC2 _ADCCFG 
+                                _APCTL1 _APCTL2 _SPI1C1 _SPI1C2 _SPI1BR bdm_vtrg_en 
+                                FP_Stat VPP_Stat 
+MCG_Init                  USES _MCGC2 _MCGSC _MCGC1 _MCGC3 
+bdm_vsw_en                USES _PTBD _PTBDD wait_ms _PTDD 
+bdm_vtrg_en               USES tPower_Good _PTBD _PTBDD wait_ms _PTDD 
+tPower_Good               USES _ADCSC1 _ADCR 
+CheckTargetPower          USES tPower_Good _PTDD 
+Endpoint_Init             USES _EPCTL1 Bdtmap _EPCTL2 _EPCTL3 _EPCTL4 
+EndPoint_IN               USES _Jump_Table_Header_Offset Bdtmap EP1_Buffer 
+                                EP1_BDT_Buffer EP2_Buffer EP2_BDT_Buffer EP3_Buffer 
+                                EP3_BDT_Buffer EP4_Buffer EP4_BDT_Buffer USB_Buf_Rdy 
+EndPoint_OUT              USES SCI_get_pending_chars_during_an_interrupt 
+                                EndPoint_OUT _Jump_Table_Header_Offset Bdtmap EP1_Buffer 
+                                EP1_BDT_Buffer EP2_Buffer EP2_BDT_Buffer EP3_Buffer 
+                                EP3_BDT_Buffer EP4_Buffer EP4_BDT_Buffer USB_Buf_Rdy 
+dly                       USES _TPM1CNT _TPM1C0V _TPM1C0SC 
+main                      USES read_board_id read_osbdm_id Mcu_Init MCG_Init 
+                                t_debug_init Initialize_USBModule Check_USBBus_Status 
+                                bdm_vsw_en debug_cmd_pending serial_cmd_pending 
+                                debug_command_exec serial_command_exec 
+                                sci_virtual_serial_port_is_enabled serial_send_data_if_pending CheckTargetPower 
+Initialize_USBModule      USES Usb_Device_State Usb_Stat Usb_Active_Cfg 
+                                _USBCTL0 Bdtmap _EPCTL0 _INTENB 
+Check_USBBus_Status       USES _CTL _EPCTL0 _INTSTAT _INTENB _USBCTL0 
+                                Usb_Device_State USB_Suspend 
+USB_Suspend               USES _USBCTL0 _INTSTAT Usb_Device_State USB_WakeUp 
+                                USB_Remote_Wakeup 
+USB_WakeFrom_Suspend      USES _INTSTAT _INTENB _CTL 
+USB_Remote_Wakeup         USES USB_WakeFrom_Suspend _CTL delay_count.1 _SRS 
+USB_SOF_Handler           USES _INTSTAT 
+USB_Stall_Handler         USES _STAT _EPCTL0 USB_Prepare_Next_Trf _INTSTAT 
+USB_Error_Handler         USES _INTSTAT _ERRSTAT _STAT USB_Prepare_Next_Trf 
+USB_Bus_Reset_Handler     USES _ERRSTAT _INTSTAT _ERRENB _INTENB _ADDR _EPCTL1 
+                                Clear_Mem _EPCTL0 USB_Prepare_Next_Trf Usb_Stat 
+                                Usb_Active_Cfg Usb_Device_State 
+USB_ISR                   USES SCI_get_pending_chars_during_an_interrupt 
+                                _USBCTL0 Usb_Device_State _INTSTAT _INTENB 
+                                USB_WakeFrom_Suspend USB_Bus_Reset_Handler USB_SOF_Handler 
+                                USB_Stall_Handler USB_Error_Handler USB_Transaction_Handler 
+IRQ_ISR                   USES _IRQSC 
+USB_WakeUp                USES Usb_Device_State _USBCTL0 Usb_Stat _SRS 
+                                _INTSTAT 
+USB_Transaction_Handler   USES _STAT SCI_get_pending_chars_during_an_interrupt 
+                                Bdtmap USB_CtrlTrf_SetupStage_Processing 
+                                USB_CtrlTrf_Out_Handler USB_CtrlTrf_In_Handler EndPoint_OUT EP1_Buffer 
+                                debug_cmd_pending EP3_Buffer serial_cmd_pending 
+USB_CtrlTrf_Out_Handler   USES Ctrl_Trf_State USB_CtrlTrf_RxData 
+                                USB_Prepare_Next_Trf 
+USB_CtrlTrf_RxData        USES Bdtmap Transfer_Cnt CtrlTrf_Data pSrc pObj 
+USB_CtrlTrf_In_Handler    USES Usb_Device_State Setup_Pkt _ADDR Ctrl_Trf_State 
+                                USB_CtrlTrf_TxData USB_Prepare_Next_Trf 
+USB_CtrlTrf_TxData        USES Transfer_Cnt Bdtmap CtrlTrf_Data pObj pSrc 
+                                Ctrl_Trf_State 
+USB_CtrlTrf_SetupStage_Processing USES Transfer_Cnt Ctrl_Trf_State 
+                                Ctrl_Trf_Session_Owner USB_StdReq_Handler 
+                                USB_CtrlEP_SetupStage_Complete 
+USB_CtrlEP_SetupStage_Complete USES Ctrl_Trf_Session_Owner Bdtmap Setup_Pkt 
+                                Transfer_Cnt USB_CtrlTrf_TxData Ctrl_Trf_State _CTL 
+USB_Prepare_Next_Trf      USES Bdtmap _CTL Ctrl_Trf_State 
+USB_StdReq_Handler        USES Setup_Pkt _Jump_Table_Header_Offset 
+                                USB_StdGetDsc_Handler USB_StdSetCfg_Handler Usb_Device_State 
+                                Usb_Active_Cfg USB_StdGetStatus_Handler 
+                                USB_StdFeatureReq_Handler Usb_Alt_Intf pSrc Transfer_Cnt 
+                                Ctrl_Trf_Session_Owner 
+USB_StdGetDsc_Handler     USES Setup_Pkt _Jump_Table_Header_Offset _Serial3 
+                                _Serial2 _Serial1 _Serial0 OSSerialNum Transfer_Cnt 
+                                Device_Dsc_With_Serial_Number Device_Dsc_No_Serial_Number Cfg_Des pSrc 
+                                Str_Des Ctrl_Trf_Session_Owner 
+USB_StdSetCfg_Handler     USES _EPCTL1 Clear_Mem Usb_Alt_Intf Setup_Pkt 
+                                Usb_Active_Cfg Ctrl_Trf_Session_Owner Usb_Device_State 
+                                Endpoint_Init 
+USB_StdGetStatus_Handler  USES CtrlTrf_Data Setup_Pkt 
+                                _Jump_Table_Header_Offset Usb_Stat Ctrl_Trf_Session_Owner Bdtmap 
+                                Transfer_Cnt pSrc 
+USB_StdFeatureReq_Handler USES Setup_Pkt Usb_Stat Ctrl_Trf_Session_Owner 
+                                _Jump_Table_Header_Offset Bdtmap 
+getbuf4                   USES _LLSL _POP32 _LADD _COPY 
+read_board_id             USES bid0 bid1 board_id 
+read_osbdm_id             USES osbdm_id 
+_UserEntry                USES _Startup 
+_Usr_Vector               USES VPP_ISR Dummy_ISR SCI_ReceiveISR SCI_OverrunISR 
+                                USB_ISR IRQ_ISR 
+_Entry                    USES bootloader_dly_20us _IRQSC _UserEntry _MCGC2 
+                                _MCGSC _MCGC1 _MCGC3 _FCDIV _SOPT1 _USBCTL0 
+                                Bootloader_Main 
+ICP_USB_TX_Service        USES DataIN_Cnt ICP_BDT ICP_IN_Data pDataBuf pDataIN 
+ICP_USB_End_Service       USES _ICP_VAR _EPCTL0 ICP_Setup DataIN_Cnt 
+                                ICP_USB_TX_Service ICP_USB_State ICP_BDT _CTL 
+ICP_Setup_Handler         USES ICP_USB_State _ICP_VAR DataIN_Cnt ICP_Setup 
+                                ICP_DeviceDesc pDataIN ICP_ConfigDesc ICP_StringDesc 
+                                Flash_Erase vICPStatus vByteNumber check_sum 
+                                ICP_USB_End_Service vStartAddr 
+ICP_USB_Wait              USES ICP_USB_State ICP_BDT 
+ICP_In_Handler            USES _ICP_VAR ICP_Setup _ADDR ICP_USB_State 
+                                ICP_USB_TX_Service ICP_BDT ICP_USB_Wait 
+ICP_Out_Handler           USES ICP_BDT ICP_USB_State _ICP_VAR vByteNumber 
+                                vStartAddr ICP_Setup Flash_Program vICPStatus 
+                                Flash_Verification ICP_USB_Wait 
+Init_USB                  USES _USBCTL0 ICP_BDT _CTL _INTSTAT _ERRSTAT _ERRENB 
+                                _INTENB _ADDR _EPCTL0 
+Bootloader_Main           USES Init_USB _ICP_VAR vICPStatus FLASHPGM_Copy 
+                                _INTSTAT _STAT ICP_BDT ICP_Setup_Handler 
+                                ICP_Out_Handler ICP_In_Handler 
+Flash_Program             USES FLASHPGM 
+Flash_Verification        USES check_sum 
+Flash_Erase               USES FLASHPGM 
+FLASHPGM_Copy             USES FLASHPGM_ROM FLASHPGM 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |  | 
+ |  +- read_board_id       
+ |  |    
+ |  +- read_osbdm_id       
+ |  |    
+ |  +- Mcu_Init            
+ |  |  | 
+ |  |  +- bdm_vtrg_en         
+ |  |     | 
+ |  |     +- tPower_Good         
+ |  |     |    
+ |  |     +- wait_ms             
+ |  |          
+ |  +- MCG_Init            
+ |  |    
+ |  +- t_debug_init        
+ |  |    
+ |  +- Initialize_USBModule
+ |  |    
+ |  +- Check_USBBus_Status 
+ |  |  | 
+ |  |  +- USB_Suspend         
+ |  |     | 
+ |  |     +- USB_WakeUp          
+ |  |     |    
+ |  |     +- USB_Remote_Wakeup   
+ |  |        | 
+ |  |        +- USB_WakeFrom_Suspend
+ |  |             
+ |  +- bdm_vsw_en          
+ |  |  | 
+ |  |  +- wait_ms              (see above)
+ |  |     
+ |  +- debug_command_exec  
+ |  |  | 
+ |  |  +- _Jump_Table_Addr    
+ |  |  |    
+ |  |  +- _Search_Table_8_Addr
+ |  |  |    
+ |  |  +- t_stat              
+ |  |  |  | 
+ |  |  |  +- bdm_rbdreg          
+ |  |  |  |  | 
+ |  |  |  |  +- t_txrx              
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- dly                 
+ |  |  |  |  |       
+ |  |  |  |  +- _LADD               
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _ENTER_BINARY_L     
+ |  |  |  |  |  |  | 
+ |  |  |  |  |  |  +- _PUSH_ARGS_L        
+ |  |  |  |  |  |       
+ |  |  |  |  |  +- _LADD_k_is_k_plus_j 
+ |  |  |  |  |       
+ |  |  |  |  +- _POP32              
+ |  |  |  |  |    
+ |  |  |  |  +- _COPY               
+ |  |  |  |       
+ |  |  |  +- bdmcf_pst_status    
+ |  |  |       
+ |  |  +- t_get_ver           
+ |  |  |    
+ |  |  +- t_init              
+ |  |  |  | 
+ |  |  |  +- bdm_vtrg_en          (see above)
+ |  |  |     
+ |  |  +- t_reset             
+ |  |  |  | 
+ |  |  |  +- _Jump_Table_Header_Offset
+ |  |  |  |    
+ |  |  |  +- t_power_reset       
+ |  |  |  |  | 
+ |  |  |  |  +- wait_ms              (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- bdm_vtrg_en          (see above)
+ |  |  |  |     
+ |  |  |  +- t_hard_reset        
+ |  |  |  |  | 
+ |  |  |  |  +- wait_ms              (see above)
+ |  |  |  |     
+ |  |  |  +- t_resync            
+ |  |  |     | 
+ |  |  |     +- t_txrx               (see above)
+ |  |  |        
+ |  |  +- getbuf2little       
+ |  |  |    
+ |  |  +- t_assert_ta         
+ |  |  |  | 
+ |  |  |  +- dly_10us            
+ |  |  |       
+ |  |  +- t_go                
+ |  |  |  | 
+ |  |  |  +- bdm_rbdreg           (see above)
+ |  |  |  |  
+ |  |  |  +- bdm_wbdreg          
+ |  |  |  |  | 
+ |  |  |  |  +- t_txrx               (see above)
+ |  |  |  |     
+ |  |  |  +- t_read_creg         
+ |  |  |  |  | 
+ |  |  |  |  +- bdmcf_tx_cmdaddr    
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- bdmcf_tx_msg        
+ |  |  |  |  |     | 
+ |  |  |  |  |     +- t_txrx               (see above)
+ |  |  |  |  |        
+ |  |  |  |  +- bdmcf_rx            
+ |  |  |  |     | 
+ |  |  |  |     +- t_txrx               (see above)
+ |  |  |  |        
+ |  |  |  +- getbuf4             
+ |  |  |  |  | 
+ |  |  |  |  +- _LLSL               
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _ENTER_UNARY_L      
+ |  |  |  |  |       
+ |  |  |  |  +- _POP32               (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LADD                (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _COPY                (see above)
+ |  |  |  |     
+ |  |  |  +- t_write_creg        
+ |  |  |  |  | 
+ |  |  |  |  +- bdmcf_tx_cmdaddr     (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- bdmcf_tx_32         
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- getbuf4              (see above)
+ |  |  |  |  |  |  
+ |  |  |  |  |  +- bdmcf_tx_msg         (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- bdmcf_rx             (see above)
+ |  |  |  |     
+ |  |  |  +- t_txrx               (see above)
+ |  |  |     
+ |  |  +- t_step              
+ |  |  |  | 
+ |  |  |  +- bdm_rbdreg           (see above)
+ |  |  |  |  
+ |  |  |  +- bdm_wbdreg           (see above)
+ |  |  |  |  
+ |  |  |  +- t_read_creg          (see above)
+ |  |  |  |  
+ |  |  |  +- getbuf4              (see above)
+ |  |  |  |  
+ |  |  |  +- t_write_creg         (see above)
+ |  |  |  |  
+ |  |  |  +- t_txrx               (see above)
+ |  |  |     
+ |  |  +- t_halt              
+ |  |  |  | 
+ |  |  |  +- wait_ms              (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_rx             (see above)
+ |  |  |     
+ |  |  +- getbuf4              (see above)
+ |  |  |  
+ |  |  +- t_config            
+ |  |  |    
+ |  |  +- t_set_clock         
+ |  |  |    
+ |  |  +- t_get_clock         
+ |  |  |    
+ |  |  +- t_special_feature   
+ |  |  |  | 
+ |  |  |  +- _Jump_Table_Offset  
+ |  |  |  |    
+ |  |  |  +- _Jump_Table_Addr     (see above)
+ |  |  |  |  
+ |  |  |  +- cfinp               
+ |  |  |  |  | 
+ |  |  |  |  +- bdmcf_pst_status     (see above)
+ |  |  |  |     
+ |  |  |  +- outp                
+ |  |  |  |    
+ |  |  |  +- t_swap17            
+ |  |  |  |  | 
+ |  |  |  |  +- outp                 (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- delay_492ns         
+ |  |  |  |  |    
+ |  |  |  |  +- _COPY                (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LAND_RC            
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _ENTER_BINARY_L_RC  
+ |  |  |  |  |  |  | 
+ |  |  |  |  |  |  +- _PUSH_ARGS_L         (see above)
+ |  |  |  |  |  |     
+ |  |  |  |  |  +- _LAND_k_is_k_and_j  
+ |  |  |  |  |       
+ |  |  |  |  +- _POP32               (see above)
+ |  |  |  |     
+ |  |  |  +- cf_do_dsack         
+ |  |  |  |  | 
+ |  |  |  |  +- delay_492ns          (see above)
+ |  |  |  |     
+ |  |  |  +- _LLSL                (see above)
+ |  |  |  |  
+ |  |  |  +- _LOR                
+ |  |  |  |  | 
+ |  |  |  |  +- _ENTER_BINARY_L      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LOR_k_is_k_or_j    
+ |  |  |  |       
+ |  |  |  +- _LAND_RC             (see above)
+ |  |  |  |  
+ |  |  |  +- _POP32               (see above)
+ |  |  |  |  
+ |  |  |  +- t_xchange           
+ |  |  |  |  | 
+ |  |  |  |  +- _LOR                 (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- t_swap17             (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LCMP_RC            
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _ENTER_BINARY_L_RC   (see above)
+ |  |  |  |  |  |  
+ |  |  |  |  |  +- _LCMP_k_rel_j       
+ |  |  |  |  |       
+ |  |  |  |  +- _PUSH_CC            
+ |  |  |  |  |    
+ |  |  |  |  +- _POP_CC             
+ |  |  |  |  |    
+ |  |  |  |  +- cf_do_dsack          (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LOR_RC             
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _ENTER_BINARY_L_RC   (see above)
+ |  |  |  |  |  |  
+ |  |  |  |  |  +- _LOR_k_is_k_or_j     (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- _POP32               (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _COPY                (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- delay_492ns          (see above)
+ |  |  |  |     
+ |  |  |  +- _LADD                (see above)
+ |  |  |  |  
+ |  |  |  +- _SEXT16_32          
+ |  |  |  |    
+ |  |  |  +- delay_492ns          (see above)
+ |  |  |  |  
+ |  |  |  +- _IDIVU_STAR08       
+ |  |  |     | 
+ |  |  |     +- _IDIVMOD            
+ |  |  |          
+ |  |  +- _LCMP_RC             (see above)
+ |  |  |  
+ |  |  +- _Jump_Table_Offset   (see above)
+ |  |  |  
+ |  |  +- t_write_ad          
+ |  |  |  | 
+ |  |  |  +- _LCMP_RC             (see above)
+ |  |  |  |  
+ |  |  |  +- _LSUB_RC            
+ |  |  |  |  | 
+ |  |  |  |  +- _ENTER_BINARY_L_RC   (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- _LSUB_k_is_k_minus_j
+ |  |  |  |       
+ |  |  |  +- _POP32               (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_tx_msg         (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_tx_32          (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_rx             (see above)
+ |  |  |     
+ |  |  +- t_write_creg         (see above)
+ |  |  |  
+ |  |  +- t_write_dreg        
+ |  |  |  | 
+ |  |  |  +- bdmcf_tx_msg         (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_tx_32          (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_rx             (see above)
+ |  |  |     
+ |  |  +- t_write_mem         
+ |  |  |  | 
+ |  |  |  +- cf_write_or_fill_mem
+ |  |  |     | 
+ |  |  |     +- bdmcf_tx_cmdaddr     (see above)
+ |  |  |     |  
+ |  |  |     +- bdmcf_rx             (see above)
+ |  |  |     |  
+ |  |  |     +- bdmcf_tx_msg         (see above)
+ |  |  |     |  
+ |  |  |     +- getbuf2big          
+ |  |  |     |    
+ |  |  |     +- bdmcf_transmit4     
+ |  |  |        | 
+ |  |  |        +- getbuf2big           (see above)
+ |  |  |        |  
+ |  |  |        +- bdmcf_tx_msg         (see above)
+ |  |  |        |  
+ |  |  |        +- getbuf2little        (see above)
+ |  |  |           
+ |  |  +- t_fill_mem          
+ |  |  |  | 
+ |  |  |  +- cf_write_or_fill_mem (see above)
+ |  |  |     
+ |  |  +- t_flash_power       
+ |  |  |    
+ |  |  +- t_flash_prog        
+ |  |  |    
+ |  |  +- t_read_ad           
+ |  |  |  | 
+ |  |  |  +- _LCMP_RC             (see above)
+ |  |  |  |  
+ |  |  |  +- _LSUB_RC             (see above)
+ |  |  |  |  
+ |  |  |  +- _POP32               (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_tx_msg         (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_rx             (see above)
+ |  |  |     
+ |  |  +- t_read_creg          (see above)
+ |  |  |  
+ |  |  +- t_read_dreg         
+ |  |  |  | 
+ |  |  |  +- bdm_rbdreg           (see above)
+ |  |  |     
+ |  |  +- t_read_mem          
+ |  |  |  | 
+ |  |  |  +- bdmcf_tx_cmdaddr     (see above)
+ |  |  |  |  
+ |  |  |  +- bdmcf_rx             (see above)
+ |  |  |     
+ |  |  +- t_unsecure          
+ |  |  |  | 
+ |  |  |  +- cf_reset_nosync     
+ |  |  |  |  | 
+ |  |  |  |  +- wait_ms              (see above)
+ |  |  |  |     
+ |  |  |  +- jtag_init           
+ |  |  |  |  | 
+ |  |  |  |  +- wait_ms              (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- dly                  (see above)
+ |  |  |  |     
+ |  |  |  +- jtag_transition_shift
+ |  |  |  |  | 
+ |  |  |  |  +- jdly_loop           
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- dly                  (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- dly                  (see above)
+ |  |  |  |     
+ |  |  |  +- jtag_write          
+ |  |  |  |  | 
+ |  |  |  |  +- dly                  (see above)
+ |  |  |  |     
+ |  |  |  +- jtag_read           
+ |  |  |  |  | 
+ |  |  |  |  +- dly                  (see above)
+ |  |  |  |     
+ |  |  |  +- jtag_transition_reset
+ |  |  |  |  | 
+ |  |  |  |  +- dly                  (see above)
+ |  |  |  |     
+ |  |  |  +- jdly_loop            (see above)
+ |  |  |     
+ |  |  +- debug_command_send_return
+ |  |  |  | 
+ |  |  |  +- EndPoint_IN         
+ |  |  |     | 
+ |  |  |     +- _Jump_Table_Header_Offset (see above)
+ |  |  |     |  
+ |  |  |     +- USB_Buf_Rdy         
+ |  |  |          
+ |  |  +- _LADD                (see above)
+ |  |  |  
+ |  |  +- _POP32               (see above)
+ |  |  |  
+ |  |  +- get_mem_header      
+ |  |     | 
+ |  |     +- getbuf4              (see above)
+ |  |        
+ |  +- serial_command_exec 
+ |  |  | 
+ |  |  +- _Jump_Table_Header_Offset (see above)
+ |  |  |  
+ |  |  +- serial_command_send_return
+ |  |  |  | 
+ |  |  |  +- EndPoint_IN          (see above)
+ |  |  |     
+ |  |  +- SCI_Close           
+ |  |  |    
+ |  |  +- SCI_SendBuffer      
+ |  |  |  | 
+ |  |  |  +- SCI_Transmit        
+ |  |  |       
+ |  |  +- SCI_Init            
+ |  |  |    
+ |  |  +- t_serial_init       
+ |  |     | 
+ |  |     +- t_init               (see above)
+ |  |        
+ |  +- serial_send_data_if_pending
+ |  |  | 
+ |  |  +- SCI_CharReady       
+ |  |  |    
+ |  |  +- SCI_GetChar         
+ |  |  |  | 
+ |  |  |  +- SCI_save_and_disable_interrupt_settings
+ |  |  |  |    
+ |  |  |  +- SCI_restore_interrupt_settings
+ |  |  |       
+ |  |  +- SCI_GetOverflowStatus
+ |  |  |    
+ |  |  +- serial_command_send_return (see above)
+ |  |     
+ |  +- CheckTargetPower    
+ |     | 
+ |     +- tPower_Good          (see above)
+ |        
+ +- _Startup            
+    | 
+    +- Init                
+    |  | 
+    |  +- loadByte            
+    |       
+    +- main                 (see above)
+       
+ _UserEntry          
+ | 
+ +- _Startup             (see above)
+    
+ _Usr_Vector         
+ | 
+ +- VPP_ISR             
+ |    
+ +- Dummy_ISR           
+ |    
+ +- SCI_ReceiveISR      
+ |  | 
+ |  +- SCI_get_pending_chars_during_an_interrupt
+ |       
+ +- SCI_OverrunISR      
+ |    
+ +- USB_ISR             
+ |  | 
+ |  +- SCI_get_pending_chars_during_an_interrupt (see above)
+ |  |  
+ |  +- USB_WakeFrom_Suspend (see above)
+ |  |  
+ |  +- USB_Bus_Reset_Handler
+ |  |  | 
+ |  |  +- Clear_Mem           
+ |  |  |    
+ |  |  +- USB_Prepare_Next_Trf
+ |  |       
+ |  +- USB_SOF_Handler     
+ |  |    
+ |  +- USB_Stall_Handler   
+ |  |  | 
+ |  |  +- USB_Prepare_Next_Trf (see above)
+ |  |     
+ |  +- USB_Error_Handler   
+ |  |  | 
+ |  |  +- USB_Prepare_Next_Trf (see above)
+ |  |     
+ |  +- USB_Transaction_Handler
+ |     | 
+ |     +- SCI_get_pending_chars_during_an_interrupt (see above)
+ |     |  
+ |     +- USB_CtrlTrf_SetupStage_Processing
+ |     |  | 
+ |     |  +- USB_StdReq_Handler  
+ |     |  |  | 
+ |     |  |  +- _Jump_Table_Header_Offset (see above)
+ |     |  |  |  
+ |     |  |  +- USB_StdGetDsc_Handler
+ |     |  |  |  | 
+ |     |  |  |  +- _Jump_Table_Header_Offset (see above)
+ |     |  |  |     
+ |     |  |  +- USB_StdSetCfg_Handler
+ |     |  |  |  | 
+ |     |  |  |  +- Clear_Mem            (see above)
+ |     |  |  |  |  
+ |     |  |  |  +- Endpoint_Init       
+ |     |  |  |       
+ |     |  |  +- USB_StdGetStatus_Handler
+ |     |  |  |  | 
+ |     |  |  |  +- _Jump_Table_Header_Offset (see above)
+ |     |  |  |     
+ |     |  |  +- USB_StdFeatureReq_Handler
+ |     |  |     | 
+ |     |  |     +- _Jump_Table_Header_Offset (see above)
+ |     |  |        
+ |     |  +- USB_CtrlEP_SetupStage_Complete
+ |     |     | 
+ |     |     +- USB_CtrlTrf_TxData  
+ |     |          
+ |     +- USB_CtrlTrf_Out_Handler
+ |     |  | 
+ |     |  +- USB_CtrlTrf_RxData  
+ |     |  |    
+ |     |  +- USB_Prepare_Next_Trf (see above)
+ |     |     
+ |     +- USB_CtrlTrf_In_Handler
+ |     |  | 
+ |     |  +- USB_CtrlTrf_TxData   (see above)
+ |     |  |  
+ |     |  +- USB_Prepare_Next_Trf (see above)
+ |     |     
+ |     +- EndPoint_OUT        
+ |        | 
+ |        +- SCI_get_pending_chars_during_an_interrupt (see above)
+ |        |  
+ |        +- _Jump_Table_Header_Offset (see above)
+ |        |  
+ |        +- USB_Buf_Rdy          (see above)
+ |           
+ +- IRQ_ISR             
+      
+ _Entry              
+ | 
+ +- bootloader_dly_20us 
+ |    
+ +* _UserEntry           (see above)
+ |  
+ +- Bootloader_Main     
+    | 
+    +- Init_USB            
+    |    
+    +- FLASHPGM_Copy       
+    |    
+    +- ICP_Setup_Handler   
+    |  | 
+    |  +- Flash_Erase         
+    |  |    
+    |  +- ICP_USB_End_Service 
+    |     | 
+    |     +- ICP_USB_TX_Service  
+    |          
+    +- ICP_Out_Handler     
+    |  | 
+    |  +- Flash_Program       
+    |  |    
+    |  +- Flash_Verification  
+    |  |    
+    |  +- ICP_USB_Wait        
+    |       
+    +- ICP_In_Handler      
+       | 
+       +- ICP_USB_TX_Service   (see above)
+       |  
+       +- ICP_USB_Wait         (see above)
+          
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 9
+Total size of all blocks to be downloaded: 14684
+

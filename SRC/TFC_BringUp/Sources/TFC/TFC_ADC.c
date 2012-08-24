@@ -205,7 +205,7 @@ void InitADC0()
     // There really is no channel 31.
     
     Master_Adc0_Config.STATUS1A = AIEN_ON | DIFF_SINGLE | ADC_SC1_ADCH(31);
-   // Master_Adc_Config.STATUS1B = AIEN_OFF | DIFF_SINGLE | ADC_SC1_ADCH(31);
+
     
     ADC_Config_Alt(ADC0_BASE_PTR, &Master_Adc0_Config);  // config ADC
  
@@ -299,8 +299,6 @@ void TFC_InitADCs()
 {
 	
 	InitADC1();
-	#ifdef TFC_USE_LINESCAN_CAMERA
-	
 	
 	//All Adc processing of the Pots and linescan will be done in the ADC1 IRQ!
 	//A state machine will scan through the channels.
@@ -324,11 +322,10 @@ void TFC_InitADCs()
 	
 	enable_irq(INT_PIT0-16);
 	enable_irq(INT_ADC1-16);
-	#endif
+	
 	
 	#ifdef TFC_USE_NTSC_CAMERA
 	InitADC0();
-	enable_irq(INT_ADC0-16);
 	#endif
 }
 
@@ -469,8 +466,6 @@ void ADC1_IRQ()
 void ADC0_IRQ()
 {
 	int Junk;
-	Junk = ADC0_RA;
-	TFC_BAT_LED0_TOGGLE;
 }
 
 
