@@ -1,0 +1,704 @@
+/******************************************************************************
+ *
+ * Freescale Semiconductor Inc.
+ * (c) Copyright 2004-2010 Freescale Semiconductor, Inc.
+ * ALL RIGHTS RESERVED.
+ *
+ ******************************************************************************
+ *
+ * THIS SOFTWARE IS PROVIDED BY FREESCALE "AS IS" AND ANY EXPRESSED OR 
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  
+ * IN NO EVENT SHALL FREESCALE OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+ * THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ **************************************************************************//*!
+ *
+ * @file main_kinetis.c
+ *
+ * @author
+ *
+ * @version
+ *
+ * @date
+ *
+ * @brief   This software is the USB driver stack for S08 family
+ *****************************************************************************/
+#include "types.h"
+#include "derivative.h" /* include peripheral declarations */
+#include "user_config.h"
+#include "RealTimerCounter.h"
+#include "Wdt_kinetis.h"
+#include "hidef.h"
+
+
+/*****************************************************************************
+ * Global Functions Prototypes
+ *****************************************************************************/
+#if MAX_TIMER_OBJECTS
+	extern uint_8 TimerQInitialize(uint_8 ControllerId);
+#endif
+extern void TestApp_Init(void);
+extern void TestApp_Task(void);
+
+#if (defined MCU_MK20D7) || (defined MCU_MK40D7)
+	#define MCGOUTCLK_72_MHZ
+#endif
+
+//#if (defined MCU_MK60N512VMD100) || (defined MCU_MK53N512CMD100)
+//	#define BSP_CLOCK_SRC                   (50000000ul)       	// crystal, oscillator freq.
+//#else
+	#define BSP_CLOCK_SRC                   (8000000ul)       	// crystal, oscillator freq.
+//#endif
+#define BSP_REF_CLOCK_SRC               (2000000ul)       		// must be 2-4MHz
+
+#ifdef MCGOUTCLK_72_MHZ
+	#define BSP_CORE_DIV                    (1)
+	#define BSP_BUS_DIV                     (2)
+	#define BSP_FLEXBUS_DIV                 (2)
+	#define BSP_FLASH_DIV                   (3)
+
+	// BSP_CLOCK_MUL from interval 24 - 55
+	#define BSP_CLOCK_MUL                   (36)    // 72MHz
+#else
+	#define BSP_CORE_DIV                    (1)
+	#define BSP_BUS_DIV                     (1)
+	#define BSP_FLEXBUS_DIV                 (1)
+	#define BSP_FLASH_DIV                   (2)
+
+	// BSP_CLOCK_MUL from interval 24 - 55
+	#define BSP_CLOCK_MUL                   (24)    // 48MHz
+#endif
+
+#define BSP_REF_CLOCK_DIV               (BSP_CLOCK_SRC / BSP_REF_CLOCK_SRC)
+
+#define BSP_CLOCK                       (BSP_REF_CLOCK_SRC * BSP_CLOCK_MUL)
+#define BSP_CORE_CLOCK                  (BSP_CLOCK / BSP_CORE_DIV)          // CORE CLK, max 100MHz
+#define BSP_SYSTEM_CLOCK                (BSP_CORE_CLOCK)                    // SYSTEM CLK, max 100MHz
+#define BSP_BUS_CLOCK                   (BSP_CLOCK / BSP_BUS_DIV)       // max 50MHz
+#define BSP_FLEXBUS_CLOCK               (BSP_CLOCK / BSP_FLEXBUS_DIV)
+#define BSP_FLASH_CLOCK                 (BSP_CLOCK / BSP_FLASH_DIV)     // max 25MHz
+
+#ifdef MCU_MK70F12
+enum usbhs_clock
+{
+  MCGPLL0,
+  MCGPLL1,
+  MCGFLL,
+  PLL1,
+  CLKIN
+};
+
+// Constants for use in pll_init
+#define NO_OSCINIT 0
+#define OSCINIT 1
+
+#define OSC_0 0
+#define OSC_1 1
+
+#define LOW_POWER 0
+#define HIGH_GAIN 1
+
+#define CANNED_OSC  0
+#define CRYSTAL 1
+
+#define PLL_0 0
+#define PLL_1 1
+
+#define PLL_ONLY 0
+#define MCGOUT 1
+
+#define BLPI 1
+#define FBI  2
+#define FEI  3
+#define FEE  4
+#define FBE  5
+#define BLPE 6
+#define PBE  7
+#define PEE  8
+
+// IRC defines
+#define SLOW_IRC 0
+#define FAST_IRC 1
+
+/*
+ * Input Clock Info
+ */
+#define CLK0_FREQ_HZ        50000000
+#define CLK0_TYPE           CANNED_OSC
+
+#define CLK1_FREQ_HZ        12000000
+#define CLK1_TYPE           CRYSTAL
+
+/* Select Clock source */
+/* USBHS Fractional Divider value for 120MHz input */
+/* USBHS Clock = PLL0 x (USBHSFRAC+1) / (USBHSDIV+1)       */
+#define USBHS_FRAC    0
+#define USBHS_DIV     SIM_CLKDIV2_USBHSDIV(1)
+#define USBHS_CLOCK   MCGPLL0
+
+
+/* USB Fractional Divider value for 120MHz input */
+/** USB Clock = PLL0 x (FRAC +1) / (DIV+1)       */
+/** USB Clock = 120MHz x (1+1) / (4+1) = 48 MHz    */
+#define USB_FRAC    SIM_CLKDIV2_USBFSFRAC_MASK
+#define USB_DIV     SIM_CLKDIV2_USBFSDIV(4)
+
+
+/* Select Clock source */
+#define USB_CLOCK   MCGPLL0
+//#define USB_CLOCK   MCGPLL1
+//#define USB_CLOCK   MCGFLL
+//#define USB_CLOCK   PLL1
+//#define USB_CLOCK   CLKIN
+
+/* The expected PLL output frequency is:
+ * PLL out = (((CLKIN/PRDIV) x VDIV) / 2)
+ * where the CLKIN can be either CLK0_FREQ_HZ or CLK1_FREQ_HZ.
+ * 
+ * For more info on PLL initialization refer to the mcg driver files.
+ */
+
+#define PLL0_PRDIV      5
+#define PLL0_VDIV       24
+
+#define PLL1_PRDIV      5
+#define PLL1_VDIV       30
+#endif
+
+/*****************************************************************************
+ * Local Variables
+ *****************************************************************************/
+#ifdef MCU_MK70F12
+	int mcg_clk_hz;
+	int mcg_clk_khz;
+	int core_clk_khz;
+	int periph_clk_khz;
+	int pll_0_clk_khz;
+	int pll_1_clk_khz;
+#endif
+
+/*****************************************************************************
+ * Local Functions Prototypes
+ *****************************************************************************/
+static void Init_Sys(void);
+static int pll_init(
+	#ifdef MCU_MK70F12
+		unsigned char init_osc, 
+		unsigned char osc_select, 
+		int crystal_val, 
+		unsigned char hgo_val, 
+		unsigned char erefs_val, 
+		unsigned char pll_select, 
+		signed char prdiv_val, 
+		signed char vdiv_val, 
+		unsigned char mcgout_select
+	#endif
+		);
+#ifdef MCU_MK70F12
+	void trace_clk_init(void);
+	void fb_clk_init(void);
+#endif
+static void wdog_disable(void);
+static void StartKeyPressSimulationTimer(void);
+static void KeyPressSimulationTimerCallback(void);
+void GPIO_Init();
+#ifdef MCU_MK70F12
+	void delay(int delayloop);
+#endif
+
+/****************************************************************************
+ * Global Variables
+ ****************************************************************************/
+#if ((defined __CWCC__) || (defined __IAR_SYSTEMS_ICC__) || (defined __CC_ARM))
+	extern uint_32 ___VECTOR_RAM[];            // Get vector table that was copied to RAM
+#elif defined(__GNUC__)
+	extern uint_32 __cs3_interrupt_vector[];
+#endif
+volatile uint_8 kbi_stat;	   /* Status of the Key Pressed */
+#ifdef USE_FEEDBACK_ENDPOINT
+	extern uint_32 feedback_data;
+#endif
+
+/*****************************************************************************
+ * Global Functions
+ *****************************************************************************/
+/******************************************************************************
+ * @name        main
+ *
+ * @brief       This routine is the starting point of the application
+ *
+ * @param       None
+ *
+ * @return      None
+ *
+ *****************************************************************************
+ * This function initializes the system, enables the interrupts and calls the
+ * application
+ *****************************************************************************/
+#ifdef __GNUC__
+ int main(void)
+#else
+ void main(void)
+#endif
+{
+	/* initialize the system */
+    Init_Sys();
+
+    
+
+	NVICICER2 |= (1<<9);	/* Clear any pending interrupts on USB */
+	NVICISER2 |= (1<<9);	/* Enable interrupts from USB module */	
+
+    /* SIM Configuration */
+    GPIO_Init();
+
+    (void)TestApp_Init(); /* Initialize the USB Test Application */
+
+    while(TRUE)
+    {
+    //	Watchdog_Reset();
+       /* Call the application task */
+       TestApp_Task();
+    }
+
+#ifdef __GNUC__
+    return 0;
+#endif
+}
+
+/*****************************************************************************
+ * Local Functions
+ *****************************************************************************/
+/*****************************************************************************
+ *
+ *    @name     GPIO_Init
+ *
+ *    @brief    This function Initializes LED GPIO
+ *
+ *    @param    None
+ *
+ *    @return   None
+ *
+ ****************************************************************************
+ * Intializes the GPIO
+ ***************************************************************************/
+void GPIO_Init()
+{   
+
+}
+
+/******************************************************************************
+ * @name       all_led_off
+ *
+ * @brief      Switch OFF all LEDs on Board
+ *
+ * @param	   None
+ *
+ * @return     None
+ *
+ *****************************************************************************
+ * This function switch OFF all LEDs on Board
+ *****************************************************************************/
+static void all_led_off(void)
+{
+	#if defined (MCU_MK40N512VMD100)
+		GPIOC_PSOR |= 1 << 7 | 1 << 8 | 1 << 9;
+	#elif defined (MCU_MK53N512CMD100)
+		GPIOC_PSOR |= 1 << 7 | 1 << 8;
+	#elif defined (MCU_MK60N512VMD100) 
+		GPIOA_PSOR |= 1 << 10 | 1 << 11 | 1 << 28 | 1 << 29;
+	#elif (defined MCU_MK20D5) || (defined MCU_MK20D7) || (defined MCU_MK40D7)
+		GPIOC_PSOR |= 1 << 9 | 1 << 10;
+	#endif
+}
+
+/******************************************************************************
+ * @name       display_led
+ *
+ * @brief      Displays 8bit value on Board LEDs
+ *
+ * @param	   val
+ *
+ * @return     None
+ *
+ *****************************************************************************
+ * This function displays 8 bit value on Board LED
+ *****************************************************************************/
+void display_led(uint_8 val)
+{
+    uint_8 i = 0;
+	UNUSED(i);
+    all_led_off();
+
+	#if defined (MCU_MK40N512VMD100)
+    	val &= 0x07;
+        if(val & 0x1)
+    		GPIOC_PCOR |= 1 << 7;
+    	if(val & 0x2)
+    		GPIOC_PCOR |= 1 << 8;
+    	if(val & 0x4)
+    		GPIOC_PCOR |= 1 << 9; 
+	#elif defined (MCU_MK53N512CMD100)
+		val &= 0x03;
+	    if(val & 0x1)
+			GPIOC_PCOR |= 1 << 7;
+		if(val & 0x2)
+			GPIOC_PCOR |= 1 << 8;
+	#elif defined (MCU_MK60N512VMD100) 
+		val &= 0x0F;
+	    if(val & 0x1)
+			GPIOA_PCOR |= 1 << 11;
+		if(val & 0x2)
+			GPIOA_PCOR |= 1 << 28;		
+	    if(val & 0x4)
+			GPIOA_PCOR |= 1 << 29;
+		if(val & 0x8)
+			GPIOA_PCOR |= 1 << 10;		
+	#elif (defined MCU_MK20D5) || (defined MCU_MK20D7) || (defined MCU_MK40D7)
+		val &= 0x03; 
+	    if(val & 0x1)
+			GPIOC_PCOR |= 1 << 9;
+		if(val & 0x2)
+			GPIOC_PCOR |= 1 << 10;		
+	#endif
+}
+/*****************************************************************************
+ *
+ *    @name     Init_Sys
+ *
+ *    @brief    This function Initializes the system
+ *
+ *    @param    None
+ *
+ *    @return   None
+ *
+ ****************************************************************************
+ * Initializes the MCU, MCG, KBI, RTC modules
+ ***************************************************************************/
+static void Init_Sys(void)
+{
+	/* Point the VTOR to the new copy of the vector table */
+										
+    /* SIM Configuration */
+	pll_init();
+	#if !(defined MCU_MK20D5) && !(defined MCU_MK20D7) && !(defined MCU_MK40D7) 
+		MPU_CESR=0x00;
+	#endif
+	
+    /************* USB Part **********************/
+    /*********************************************/   
+    SIM_CLKDIV2 &= (uint32_t)(~(SIM_CLKDIV2_USBFRAC_MASK | SIM_CLKDIV2_USBDIV_MASK));
+
+    SIM_CLKDIV2 = SIM_CLKDIV2_USBDIV(0);
+          
+    /* Enable USB-OTG IP clocking */
+    SIM_SCGC4 |= (SIM_SCGC4_USBOTG_MASK);          
+    
+    /* Configure USB to be clocked from PLL */
+    SIM_SOPT2  |= (SIM_SOPT2_USBSRC_MASK | SIM_SOPT2_PLLFLLSEL_MASK);
+    
+    /* Configure enable USB regulator for device */
+    SIM_SOPT1 |= SIM_SOPT1_USBREGEN_MASK;
+
+}
+
+#ifdef MCU_MK70F12
+/********************************************************************/
+void trace_clk_init(void)
+{
+	/* Set the trace clock to the core clock frequency */
+	SIM_SOPT2 |= SIM_SOPT2_TRACECLKSEL_MASK;
+
+	/* Enable the TRACE_CLKOUT pin function on PTF23 (alt6 function) */
+	PORTF_PCR23 = ( PORT_PCR_MUX(0x6));
+}
+
+/********************************************************************/
+void fb_clk_init(void)
+{
+	/* Enable the clock to the FlexBus module */
+	SIM_SCGC7 |= SIM_SCGC7_FLEXBUS_MASK;
+
+	/* Enable the FB_CLKOUT function on PTC3 (alt5 function) */
+	PORTC_PCR3 = ( PORT_PCR_MUX(0x5));
+}
+#endif // MCU_MK70F12
+
+
+/******************************************************************************
+*   @name        IRQ_ISR_PORTA
+*
+*   @brief       Service interrupt routine of IRQ
+*
+*   @return      None
+*
+*   @comment	 
+*    
+*******************************************************************************/
+//#ifndef _USB_BATT_CHG_APP_H_
+void IRQ_ISR_PORTA(void)
+{
+	#if defined(MCU_MK20D5)
+		NVICICPR1 |= 1 << ((40)%32);
+		NVICISER1 |= 1 << ((40)%32);		
+	#else
+		NVICICPR2 |= 1 << ((87)%32);
+		NVICISER2 |= 1 << ((87)%32);
+	#endif
+	
+	DisableInterrupts;
+	if(PORTA_ISFR & (1<<19))
+	{
+		kbi_stat |= 0x02; 				/* Update the kbi state */
+		PORTA_ISFR |=(1<<19);			/* Clear the bit by writing a 1 to it */
+	}
+	EnableInterrupts;
+}
+//#endif	// _USB_BATT_CHG_APP_H_
+
+/******************************************************************************
+*   @name        IRQ_ISR
+*
+*   @brief       Service interrupt routine of IRQ
+*
+*   @return      None
+*
+*   @comment	 
+*    
+*******************************************************************************/
+//#ifndef MCU_MK70F12
+	#if (!(defined MCU_MK20D5)) || (!(defined _USB_BATT_CHG_APP_H_))
+void IRQ_ISR_PORTC(void)
+	{
+		#if defined(MCU_MK20D5)
+			NVICICPR1 |= (uint32_t)(1 << ((42)%32));
+			NVICISER1 |= (uint32_t)(1 << ((42)%32));		
+		#else
+			NVICICPR2 |= (uint32_t)(1 << ((89)%32));		/* Clear any pending interrupt on PORTC */
+			NVICISER2 |= (uint32_t)(1 << ((89)%32));		/* Set interrupt on PORTC */
+		#endif
+			
+		DisableInterrupts;
+	#if(defined MCU_MK20D5) || (defined MCU_MK20D7) || (defined MCU_MK40D7)
+		if(PORTC_ISFR & (1<<1))
+	#else
+		if(PORTC_ISFR & (1<<5))
+	#endif	
+		{
+			kbi_stat |= 0x02; 				/* Update the kbi state */
+			
+			/* Clear the bit by writing a 1 to it */
+		#if(defined MCU_MK20D5) || (defined MCU_MK20D7) || (defined MCU_MK40D7)
+			PORTC_ISFR |=(1<<1);
+		#else
+			PORTC_ISFR |=(1<<5);
+		#endif							
+		}
+		
+	#if(defined MCU_MK20D5) || (defined MCU_MK20D7) || (defined MCU_MK40D7)
+		if(PORTC_ISFR & (1<<2))
+	#else
+		if(PORTC_ISFR & (1<<13))
+	#endif	
+		{
+			kbi_stat |= 0x08;				/* Update the kbi state */
+			
+			/* Clear the bit by writing a 1 to it */
+			#if(defined MCU_MK20D5) || (defined MCU_MK20D7) || (defined MCU_MK40D7)
+				PORTC_ISFR |=(1<<2);
+			#else
+				PORTC_ISFR |=(1<<13);
+			#endif				
+		}	
+		EnableInterrupts;
+	}
+	#endif
+//#endif
+
+/******************************************************************************
+*   @name        IRQ_ISR
+*
+*   @brief       Service interrupt routine of IRQ
+*
+*   @return      None
+*
+*   @comment	 
+*    
+*******************************************************************************/
+void IRQ_ISR_PORTD(void)
+{
+	#ifdef MCU_MK20D5
+		NVICICPR1 |= 1 << ((43)%32);
+		NVICISER1 |= 1 << ((43)%32);	
+	#else
+		NVICICPR2 |= 1 << ((90)%32);
+		NVICISER2 |= 1 << ((90)%32);
+	#endif	
+	
+	DisableInterrupts;
+	if(PORTD_ISFR & (1<<0))
+	{		
+		/* Update the kbi state */
+		kbi_stat |= 0x02;	// right click
+		PORTD_ISFR |= (1<<0);			/* Clear the bit by writing a 1 to it */
+	}
+	EnableInterrupts;
+}
+
+/******************************************************************************
+*   @name        IRQ_ISR_PORTE
+*
+*   @brief       Service interrupt routine of IRQ
+*
+*   @return      None
+*
+*   @comment	 
+*    
+*******************************************************************************/
+void IRQ_ISR_PORTE(void)
+{
+	#ifdef MCU_MK20D5
+		NVICICPR1 |= 1 << ((44)%32);
+		NVICISER1 |= 1 << ((44)%32);	
+	#else	
+		NVICICPR2 |= 1 << ((91)%32);
+		NVICISER2 |= 1 << ((91)%32);	
+	#endif
+	DisableInterrupts;
+	if(PORTE_ISFR & (1<<26))
+	{
+		/* Update the kbi state */
+#ifdef MCU_MK70F12
+		kbi_stat |= 0x01;	// left click
+#else
+		kbi_stat |= 0x08;	// move pointer down
+#endif
+		PORTE_ISFR |= (1<<26);			/* Clear the bit by writing a 1 to it */
+	}
+	EnableInterrupts;
+}
+
+/******************************************************************************
+*   @name        IRQ_ISR_PORTF
+*
+*   @brief       Service interrupt routine of IRQ
+*
+*   @return      None
+*
+*   @comment	 
+*    
+*******************************************************************************/
+#ifdef MCU_MK70F12
+void IRQ_ISR_PORTF(void)
+{
+}
+#endif
+
+/*****************************************************************************
+ * @name     wdog_disable
+ *
+ * @brief:   Disable watchdog.
+ *
+ * @param  : None
+ *
+ * @return : None
+ *****************************************************************************
+ * It will disable watchdog.
+  ****************************************************************************/
+static void wdog_disable(void)
+{
+	/* Write 0xC520 to the unlock register */
+	WDOG_UNLOCK = 0xC520;
+	
+	/* Followed by 0xD928 to complete the unlock */
+	WDOG_UNLOCK = 0xD928;
+	
+	/* Clear the WDOGEN bit to disable the watchdog */
+	WDOG_STCTRLH &= ~WDOG_STCTRLH_WDOGEN_MASK;
+}
+
+/*****************************************************************************
+ * @name     pll_init
+ *
+ * @brief:   Initialization of the MCU.
+ *
+ * @param  : None
+ *
+ * @return : None
+ *****************************************************************************
+ * It will configure the MCU to disable STOP and COP Modules.
+ * It also set the MCG configuration and bus clock frequency.
+ ****************************************************************************/
+static int pll_init()
+{
+
+	MCG_C2 = MCG_C2_RANGE(2) | MCG_C2_HGO_MASK | MCG_C2_EREFS_MASK|MCG_C2_IRCS_MASK;
+
+    /* Select external oscillator and Reference Divider and clear IREFS 
+     * to start external oscillator
+     * CLKS = 2, FRDIV = 3, IREFS = 0, IRCLKEN = 0, IREFSTEN = 0
+     */
+    MCG_C1 = MCG_C1_CLKS(2) | MCG_C1_FRDIV(3);
+    	/* Wait for Reference Clock Status bit to clear */
+    	while (MCG_S & MCG_S_IREFST_MASK) {};
+    
+    /* Wait for clock status bits to show clock source 
+     * is external reference clock */
+    while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2) {};
+    
+    /* Now in FBE
+     * Configure PLL Reference Divider, PLLCLKEN = 0, PLLSTEN = 0, PRDIV = 0x18
+     * The crystal frequency is used to select the PRDIV value. 
+     * Only even frequency crystals are supported
+     * that will produce a 2MHz reference clock to the PLL.
+     */
+		MCG_C5 = MCG_C5_PRDIV(BSP_REF_CLOCK_DIV - 1);
+		
+    /* Ensure MCG_C6 is at the reset default of 0. LOLIE disabled, 
+     * PLL disabled, clock monitor disabled, PLL VCO divider is clear
+     */
+    MCG_C6 = 0;
+
+    
+    /* Calculate mask for System Clock Divider Register 1 SIM_CLKDIV1 */
+    SIM_CLKDIV1 =  	SIM_CLKDIV1_OUTDIV1(BSP_CORE_DIV    - 1) |
+						SIM_CLKDIV1_OUTDIV2(BSP_BUS_DIV     - 1) |
+						SIM_CLKDIV1_OUTDIV3(BSP_FLEXBUS_DIV - 1) |
+						SIM_CLKDIV1_OUTDIV4(BSP_FLASH_DIV   - 1);
+
+   /* Set the VCO divider and enable the PLL, 
+     * LOLIE = 0, PLLS = 1, CME = 0, VDIV = 2MHz * BSP_CLOCK_MUL
+     */
+		MCG_C6 = MCG_C6_PLLS_MASK | MCG_C6_VDIV(BSP_CLOCK_MUL - 24);
+		
+    /* Wait for PLL status bit to set */
+    while (!(MCG_S & MCG_S_PLLST_MASK)) {};
+    
+		while (!(MCG_S & MCG_S_LOCK_MASK)) {};
+    
+    /* Now running PBE Mode */
+
+    /* Transition into PEE by setting CLKS to 0
+     * CLKS=0, FRDIV=3, IREFS=0, IRCLKEN=0, IREFSTEN=0
+     */
+    MCG_C1 &= ~MCG_C1_CLKS_MASK;
+
+    /* Wait for clock status bits to update */
+    while (((MCG_S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x3) {};
+
+	/* Enable the ER clock of oscillators */
+    	OSC_CR = OSC_CR_ERCLKEN_MASK | OSC_CR_EREFSTEN_MASK;       
+    
+    /* Now running PEE Mode */
+    return 0;
+
+}
+
+/* EOF */
